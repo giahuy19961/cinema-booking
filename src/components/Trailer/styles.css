@@ -1,0 +1,33 @@
+.modal-body{
+    padding: 0;
+    position: relative;
+}
+.button-close-trailer{
+    width:60px;
+    background-color:transparent;
+    height:60px;
+    border-radius:50%;
+    border:2px solid #fff;
+    position: absolute;
+    right:-3%;
+    top:-5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.button-close-icon{
+    font-size:1.2rem;
+    color: #fff;
+
+}
+.button-close-trailer:hover{
+    background-color:rgba(243, 241, 239, 0.5);
+    width:65px;
+    height:65px;
+    animation: all 0.5;
+}
+.button-close-trailer:hover .button-close-icon{
+    font-size: 1.5rem;
+    color:black;
+}

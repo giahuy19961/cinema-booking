@@ -1,0 +1,34 @@
+.carousel-item{
+    position: relative;
+}
+.carousel-item img{
+        height: 624px;
+        width: 100%;
+
+}
+.carousel-caption{
+    position: absolute;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%)
+}
+.carousel-item-play{
+    width:60px;
+    height:60px;
+    border:2px solid #fff;
+    border-radius:50%;
+    background-color:transparent;
+}
+.carousel-item-play:hover{
+    width:70px;
+    height:70px;
+    border:3px solid #f1684e;
+    color:#f1684e;
+}
+.carousel-item-play{
+    color:#fff
+}
+.carousel-item-play:hover .carousel-play-icon{
+    font-size: 2.2rem;
+    color: #f1684e;
+}
