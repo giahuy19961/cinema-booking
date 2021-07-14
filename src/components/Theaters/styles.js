@@ -7,10 +7,11 @@ export const TheaterWrap = styled.div`
   }
 `;
 
-export const Header = styled.h2`
+export const Header = styled.h1`
   color: #ff2c1f;
   text-align: center;
   margin: 20px auto;
+  font-size: 2rem;
 `;
 export const TheatersContainer = styled(Container)`
   background-color: #fff;
@@ -49,4 +50,30 @@ export const ListCinema = styled(MenuTheater)`
   overflow-y: scroll;
   justify-content: flex-start;
 `;
-export const ListMovies = styled(ListCinema)``;
+export const ListMovies = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  height: 95%;
+  padding-left: 0;
+`;
+
+export const TheaterTimeNav = styled.ul`
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+`;
+export const TheaterTime = styled.li`
+  margin: 5px;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ff2c1f;
+  cursor: pointer;
+  background-color: ${(props) => (props.active ? "#ff2c1f" : "white")};
+  color: ${(props) => (props.active ? "white" : "#ff2c1f")};
+`;

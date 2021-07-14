@@ -34,14 +34,18 @@ const HomePage = () => {
   }, [isPlay]);
   if (loading) return <Loading />;
   return (
-    <div>
-      <section className='banner-container'>
+    <div id='home'>
+      <section className='banner-container' id='menu'>
         <Banner movies={listMovie} />
         <Menu />
       </section>
+      <div id='movies'>
+        <Showing />
+      </div>
       <Trailer isPlay={show} trailer={trailer} />
-      <Showing />
-      <Theaters />
+      <div id='theaters'>
+        <Theaters />
+      </div>
     </div>
   );
 };

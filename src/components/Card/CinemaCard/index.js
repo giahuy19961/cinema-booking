@@ -1,9 +1,9 @@
 import React from "react";
 import { CardWrap, CardImg, CardBody, CardTitle, CardLink } from "./styles";
 
-const CinemaCard = ({ cinema }) => {
+const CinemaCard = ({ cinema, setCinema }) => {
   return (
-    <CardWrap>
+    <CardWrap onClick={() => setCinema(cinema.maCumRap)}>
       <CardImg></CardImg>
       <CardBody>
         <CardTitle>{cinema.tenCumRap}</CardTitle>

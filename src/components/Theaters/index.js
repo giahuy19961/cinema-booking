@@ -12,6 +12,8 @@ import {
   Logo,
   ListMovies,
   TheaterWrap,
+  TheaterTimeNav,
+  TheaterTime,
 } from "./styles";
 
 const Theaters = () => {
@@ -25,9 +27,24 @@ const Theaters = () => {
   //Local State
   const [theater, setTheater] = useState("");
   const [cinema, setCinema] = useState("");
-
+  const [date, setDate] = useState("1/1/2019");
+  const listNavDay = [
+    "1/1",
+    "2/1",
+    "3/1",
+    "4/1",
+    "5/1",
+    "6/1",
+    "7/1",
+    "8/1",
+    "9/1",
+    "10/1",
+  ];
   // Handle
-
+  const hanldeSetCinema = (cinema) => {
+    setDate("1/1/2019");
+    setCinema(cinema);
+  };
   //render
   const renderListTheaters = () => {
     return listTheaters?.map((theater, index) => {
@@ -37,6 +54,7 @@ const Theaters = () => {
           key={index}
           logo={theater.logo}
           onClick={() => {
+            setDate("1/1/2019");
             setTheater(theater.maHeThongRap);
           }}
         />
@@ -49,7 +67,7 @@ const Theaters = () => {
         return (
           <CinemaCard
             type='button'
-            onClick={() => setCinema(cinema.maCumRap)}
+            setCinema={hanldeSetCinema}
             key={index}
             cinema={cinema}
           />
@@ -58,24 +76,56 @@ const Theaters = () => {
     }
   };
   const renderListShowTime = () => {
+    let dataDate = "";
     if (listShowByTheater !== null) {
-      console.log(listShowByTheater);
       return listShowByTheater[0].lstCumRap.map((item, index) => {
         if (item.maCumRap === cinema) {
           return item.danhSachPhim.map((phim, index) => {
-            console.log(phim, cinema);
+            return phim.lstLichChieuTheoPhim.map((lich, index) => {
+              const currentDay = new Date(
+                lich.ngayChieuGioChieu
+              ).toLocaleDateString();
+              if (currentDay === date) {
+                console.log(phim, date);
+                if (dataDate !== currentDay) {
+                  dataDate = currentDay;
+                  return <MovieShowCard phim={phim} date={date} />;
+                }
+              }
+            });
           });
         }
       });
     }
   };
+
+  const renderTimeNav = () => {
+    return listNavDay.map((day, index) => {
+      return (
+        <TheaterTime
+          type='button'
+          key={index}
+          active={`${day}/2019` === date}
+          onClick={() => {
+            console.log(`${day}/2019`);
+            setDate(`${day}/2019`);
+          }}
+        >
+          {day}
+        </TheaterTime>
+      );
+    });
+  };
+
+  // Effect
   useEffect(() => {
     if (listTheaters !== null) setTheater(listTheaters[0].maHeThongRap);
   }, [listTheaters]);
 
   useEffect(() => {
-    if (listShowByTheater !== null)
+    if (listShowByTheater !== null) {
       setCinema(listShowByTheater[0].lstCumRap[0].maCumRap);
+    }
   }, [listShowByTheater]);
 
   useEffect(() => {
@@ -94,6 +144,7 @@ const Theaters = () => {
             <ListCinema>{renderListCinema()}</ListCinema>
           </div>
           <div className='col-lg-6 col-sm-5'>
+            <TheaterTimeNav>{renderTimeNav()}</TheaterTimeNav>
             <ListMovies>{renderListShowTime()}</ListMovies>
           </div>
         </div>

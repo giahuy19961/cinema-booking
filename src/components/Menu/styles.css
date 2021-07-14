@@ -68,3 +68,9 @@ select{
   background-color:	rgba(170, 176, 179,0.5);
   color:#ff2c1f
 }
+
+@media screen and (max-width: 768px){
+  .menu-nav{
+    display:none;
+  }
+}

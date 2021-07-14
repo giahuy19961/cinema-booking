@@ -4,23 +4,21 @@ import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink } from "./style";
 const NavHome = () => {
   return (
     <Nav>
-      <NavLink to='/'>
+      <NavLink smooth to='/#'>
         <h1>Logo</h1>
       </NavLink>
       <Bars />
       <NavMenu>
-        <NavLink to='/movie/:id' activeStyle>
-          Detail
+        <NavLink smooth to='/#menu' activeStyle={{ color: "#ff2c1f" }}>
+          Menu
         </NavLink>
-        <NavLink to='/service' activeStyle>
-          Home
+        <NavLink smooth to='/#movies' activeStyle={{ color: "#ff2c1f" }}>
+          Movie
         </NavLink>
-        <NavLink to='/service' activeStyle>
-          Home
+        <NavLink smooth to='/#theaters' activeStyle={{ color: "#ff2c1f" }}>
+          Theater
         </NavLink>
-        <NavLink to='/carousel' activeStyle>
-          Home
-        </NavLink>
+
         <NavBtn>
           <NavBtnLink to='/login'>SignIn</NavBtnLink>
         </NavBtn>

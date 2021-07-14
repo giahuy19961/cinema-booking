@@ -3,7 +3,7 @@ import axios from "axios";
 export default class MovieService {
   layDanhSachPhimApi = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyPhim/LayDanhSachPhim?maNhom=GP08`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyPhim/LayDanhSachPhim?maNhom=GP10`
     );
     return response.data;
   };
@@ -15,7 +15,7 @@ export default class MovieService {
   };
   layThongTinLichChieuHeThongRap = async (maHeThongRap) => {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP01`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP10`
     );
     return response.data;
   };

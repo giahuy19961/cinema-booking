@@ -8,6 +8,8 @@ export const CardWrap = styled.div`
   display: flex;
   background-color: #fff;
   justify-content: center;
+  box-shadow: 2px 2px 2px 1px grey;
+
   margin: 10px auto;
   cursor: pointer;
   @media (max-width: 1200px) {
