@@ -4,6 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { playTrailer } from "app/redux/reducer/trailer";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const Banner = ({ movies }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Banner = ({ movies }) => {
   const renderBanner = (listMovie) => {
     return listMovie?.map((movie, index) => {
       return (
-        <Carousel.Item key={index}>
+        <Carousel.Item key={index} as={Link} to={`movie/${movie.maPhim}`}>
           <img src={movie.hinhAnh} alt='Third slide' />
           <Carousel.Caption>
             <button

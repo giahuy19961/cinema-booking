@@ -1,3 +1,4 @@
+import Footer from "components/Footer";
 import NavbarHome from "components/NavbarHome";
 import NavHome from "components/NavHome";
 import React from "react";
@@ -8,6 +9,8 @@ function HomeLayout({ children }) {
     <div>
       <NavHome />
       {children}
+      <Footer/>
+
     </div>
   );
 }
