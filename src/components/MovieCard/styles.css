@@ -21,8 +21,9 @@
      border-color:transparent;
      padding:10px 20px;
      background-color:rgba(170, 176, 179,0.5);
+     text-decoration: none;
+     margin-top: 10px;
      
-
     
 }
 .btn-card:hover{ 
@@ -62,6 +63,7 @@
      left:50%;
      transform: translate(-50%,-50%);
      opacity: 0;
+     z-index: 20;
      
 }
 .card-movie:hover >.card-play-trailer{

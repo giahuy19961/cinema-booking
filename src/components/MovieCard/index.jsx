@@ -6,6 +6,7 @@ import StarRatings from "react-star-ratings";
 import { useDispatch } from "react-redux";
 import { playTrailer } from "app/redux/reducer/trailer";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,9 @@ const MovieCard = ({ movie }) => {
             starSpacing='3px'
           />
         </Card.Text>
-        <Button className='btn-card'>MUA VÉ</Button>
+        <Button className='btn-card' as={Link} to={`movie/${movie.maPhim}`}>
+          MUA VÉ
+        </Button>
       </Card.Body>
     </Card>
   );

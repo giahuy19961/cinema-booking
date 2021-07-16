@@ -13,7 +13,7 @@ export default class MovieService {
     );
     return response.data;
   };
-  layThongTinLichChieuHeThongRap = async (maHeThongRap) => {
+  layThongTinLichChieuHeThongRapApi = async (maHeThongRap) => {
     const response = await axios.get(
       `${process.env.REACT_APP_URL_LINK}/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP10`
     );

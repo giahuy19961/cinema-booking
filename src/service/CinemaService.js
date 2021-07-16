@@ -13,4 +13,10 @@ export default class CinemaService {
     );
     return response.data;
   };
+  layThongTinLichChieuPhim = async (maPhim) => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
+    );
+    return response.data;
+  };
 }

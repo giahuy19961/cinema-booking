@@ -6,7 +6,7 @@ export const listShowByTheaterApi = createAsyncThunk(
   "listShowByTheaterApi/getList",
   async (maHeThongRap) => {
     try {
-      return await movieService.layThongTinLichChieuHeThongRap(maHeThongRap);
+      return await movieService.layThongTinLichChieuHeThongRapApi(maHeThongRap);
     } catch (error) {
       console.log(error);
     }
