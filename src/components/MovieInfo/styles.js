@@ -66,6 +66,7 @@ export const BuyTicketBtn = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
   background-color: #fff;
+  text-decoration: none;
   &:hover {
     color: #fff;
     background-color: #ff2c1f;

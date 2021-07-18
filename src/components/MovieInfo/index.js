@@ -19,6 +19,7 @@ import {
 } from "./styles.js";
 import "./style.css";
 import { playTrailer } from "app/redux/reducer/trailer.js";
+import { NavHashLink } from "react-router-hash-link";
 
 const MovieInfo = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,9 @@ const MovieInfo = () => {
             <MovieShowTime>
               Ngày khởi chiếu: {new Date(ngayKhoiChieu).toLocaleDateString()}
             </MovieShowTime>
-            <BuyTicketBtn>Mua vé</BuyTicketBtn>
+            <BuyTicketBtn as={NavHashLink} to={`/movie/${maPhim}/#lich-chieu`}>
+              Mua vé
+            </BuyTicketBtn>
           </MovieInfoTitle>
         </MovieInfoContent>
         <MovieInfoContentRating>

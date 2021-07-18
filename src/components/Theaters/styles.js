@@ -18,6 +18,7 @@ export const TheatersContainer = styled(Container)`
   border: 1px solid #000;
   padding: 15px 5px;
   max-height: 700px;
+  min-height: 550px;
   margin: 20px auto;
 `;
 

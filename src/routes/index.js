@@ -1,5 +1,6 @@
 import DetailPage from "pages/Home/DetailPage";
 import HomePage from "pages/Home/HomePage";
+import TicketPage from "pages/Home/TicketPage";
 
 const routeHome = [
   {
@@ -11,6 +12,12 @@ const routeHome = [
     path: "/movie/:id",
     Component: DetailPage,
     exact: true,
+  },
+  {
+    path: "/ticket/:id",
+    Component: TicketPage,
+    exact: true,
+    login: true,
   },
 ];
 
