@@ -9,6 +9,7 @@ import Loading from "components/Loading";
 import Showing from "components/Showing";
 import Theaters from "components/Theaters";
 import { listTheatersApi } from "app/redux/reducer/listTheaters";
+import Footer from "components/Footer";
 
 const HomePage = () => {
   // redux
@@ -46,6 +47,7 @@ const HomePage = () => {
       <div id='theaters'>
         <Theaters />
       </div>
+      <Footer />
     </div>
   );
 };

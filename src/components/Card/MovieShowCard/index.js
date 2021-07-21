@@ -10,7 +10,6 @@ import {
 } from "./styles";
 
 const MovieShowCard = ({ phim, date }) => {
-  console.log(phim, date);
   const renderListShow = () => {
     return phim?.lstLichChieuTheoPhim.map((lichChieu, index) => {
       if (new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString() === date) {
@@ -18,7 +17,7 @@ const MovieShowCard = ({ phim, date }) => {
         const minute = new Date(lichChieu.ngayChieuGioChieu).getMinutes();
 
         return (
-          <CardShow to={`/movie/${lichChieu.maLichChieu}`}>
+          <CardShow key={index} to={`/ticket/${lichChieu.maLichChieu}`}>
             {hour}:{minute}
           </CardShow>
         );

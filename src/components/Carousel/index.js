@@ -28,7 +28,7 @@ const CarouselContainer = (props) => {
     rows: 2,
     gap: 20,
     loop: true,
-    autoplay: true,
+    autoplay: 5000,
     arrowLeft: (
       <FaAngleLeft class='movie-carousel-prev-icon' aria-hidden='true' />
     ),

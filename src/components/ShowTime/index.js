@@ -11,9 +11,11 @@ import {
 } from "components/Theaters/styles";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 const ShowTime = () => {
+  // router
+  const history = useHistory();
   // Global redux state
   const { heThongRapChieu } = useSelector(
     (state) => state.listShowMovieReducer.data
@@ -36,7 +38,6 @@ const ShowTime = () => {
     "10/1",
   ];
 
-  console.log(theater, cinema, date);
   // func logical
   const hanldeSetCinema = (cinema) => {
     setDate("1/1/2019");
@@ -90,7 +91,6 @@ const ShowTime = () => {
           key={index}
           active={`${day}/2019` === date}
           onClick={() => {
-            console.log(`${day}/2019`);
             setDate(`${day}/2019`);
           }}
         >
@@ -131,7 +131,12 @@ const ShowTime = () => {
     });
   };
   useEffect(() => {
-    setTheater(heThongRapChieu[0].maHeThongRap);
+    if (heThongRapChieu === undefined) {
+      console.log(heThongRapChieu);
+      return <Redirect to='/' />;
+    } else {
+      setTheater(heThongRapChieu[0].maHeThongRap);
+    }
   }, [heThongRapChieu]);
   useEffect(() => {
     setDefaultCinema(theater);

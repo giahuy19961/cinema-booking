@@ -7,12 +7,13 @@ import PageNotFound from "pages/NotFound";
 
 function App() {
   const renderHome = (routes) => {
-    return routes?.map(({ exact, path, Component }, index) => (
+    return routes?.map(({ exact, path, Component, authRoute }, index) => (
       <HomeTemplate
         key={index}
         exact={exact}
         path={path}
         Component={Component}
+        authRoute={authRoute ? authRoute : ""}
       />
     ));
   };

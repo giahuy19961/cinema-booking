@@ -5,6 +5,7 @@ import listTheatersReducer from "./listTheaters";
 import listCinemaByIdReducer from "./listCinema";
 import listShowByTheaterReducer from "./listShowByTheater";
 import listShowMovieReducer from "./listShowMovie";
+import userLoginReducer from "./userLogin";
 import trailerReducer from "./trailer";
 
 export const rootReducer = combineReducers({
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   listTheatersReducer,
   listShowMovieReducer,
   trailerReducer,
+  userLoginReducer,
 });

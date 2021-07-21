@@ -86,10 +86,9 @@ const Theaters = () => {
                 lich.ngayChieuGioChieu
               ).toLocaleDateString();
               if (currentDay === date) {
-                console.log(phim, date);
                 if (dataDate !== currentDay) {
                   dataDate = currentDay;
-                  return <MovieShowCard phim={phim} date={date} />;
+                  return <MovieShowCard key={index} phim={phim} date={date} />;
                 }
               }
             });
@@ -107,7 +106,6 @@ const Theaters = () => {
           key={index}
           active={`${day}/2019` === date}
           onClick={() => {
-            console.log(`${day}/2019`);
             setDate(`${day}/2019`);
           }}
         >

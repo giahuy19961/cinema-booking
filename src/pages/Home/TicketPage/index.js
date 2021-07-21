@@ -1,7 +1,17 @@
+import Footer from "components/Footer";
 import React from "react";
 
-const TicketPage = () => {
-  return <div></div>;
+const TicketPage = ({
+  match: {
+    params: { id },
+  },
+}) => {
+  return (
+    <div>
+      TicketPage was params {id}
+      <Footer />
+    </div>
+  );
 };
 
 export default TicketPage;

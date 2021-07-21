@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "components/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import Trailer from "components/Trailer";
+import Footer from "components/Footer";
 
 const DetailPage = ({
   match: {
@@ -38,6 +39,7 @@ const DetailPage = ({
       <MovieInfo />
       <ShowTime />
       <Trailer isPlay={show} trailer={trailer} />
+      <Footer />
     </>
   );
 };

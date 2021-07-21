@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { listShowTimeMovieApi } from "app/redux/reducer/listShowTimeMovie";
 import "./styles.css";
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const Menu = () => {
+  // Router service
+  const history = useHistory();
   // redux service
   const movies = useSelector((state) => state.listMovieReducer.data);
   const showTime = useSelector((state) => state.listShowTimeMovieReducer.data);
@@ -22,8 +25,6 @@ const Menu = () => {
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
-
-  console.log(info);
 
   // renderMenus
   const renderListFilm = (movieList) => {
@@ -99,7 +100,7 @@ const Menu = () => {
   // Submit Buy Ticket
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(maLichChieu);
+    if (maLichChieu !== null) history.push(`/ticket/${maLichChieu}`);
   };
 
   // useEffect
@@ -126,7 +127,7 @@ const Menu = () => {
   }, [info.maPhim, info.maCumRap, info.date, info.time]);
   return (
     <div className='menu-nav'>
-      <form className='menu-nav__content' type='submit'>
+      <form className='menu-nav__content' type='submit' onSubmit={handleSubmit}>
         <div className='menu-nav__list--large'>
           <select name='maPhim' onChange={handleChange}>
             <option

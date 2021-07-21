@@ -1,5 +1,3 @@
-import Footer from "components/Footer";
-import NavbarHome from "components/NavbarHome";
 import NavHome from "components/NavHome";
 import React from "react";
 import { Route } from "react-router-dom";
@@ -9,8 +7,6 @@ function HomeLayout({ children }) {
     <div>
       <NavHome />
       {children}
-      <Footer/>
-
     </div>
   );
 }
@@ -21,7 +17,7 @@ function HomeTemplate({ Component, ...props }) {
       {...props}
       render={(propsComponent) => (
         <HomeLayout>
-          <Component {...propsComponent} />
+          <Component {...propsComponent} {...props} />
         </HomeLayout>
       )}
     />
