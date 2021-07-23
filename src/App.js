@@ -4,18 +4,24 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeTemplate from "pages/Home";
 import { routeHome } from "routes";
 import PageNotFound from "pages/NotFound";
+import ProtectedRoute from "routes/ProtectedRoute";
 
 function App() {
   const renderHome = (routes) => {
-    return routes?.map(({ exact, path, Component, authRoute }, index) => (
-      <HomeTemplate
+    return routes?.map(({ exact, path, Component, authRoute,isLogin }, index) => {
+      if(isLogin){
+        return <ProtectedRoute key={index} exact={exact} path={path} authRoute={authRoute?authRoute:""} Component={Component}/>
+      } else{
+       return(<HomeTemplate
         key={index}
         exact={exact}
         path={path}
         Component={Component}
         authRoute={authRoute ? authRoute : ""}
-      />
-    ));
+      />) 
+
+      }
+    });
   };
 
   return (

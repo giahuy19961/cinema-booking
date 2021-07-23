@@ -2,12 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "service";
 
 export const userLoginApi = createAsyncThunk(
-  "userAuth/Login",
-  async (userForm) => {
+  "userLogin/userLoginApi",
+  async (userForm,{rejectWithValue}) => {
     try {
       return await userService.userLoginApi(userForm);
+       
     } catch (error) {
-      console.log(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -15,15 +16,15 @@ export const userLoginApi = createAsyncThunk(
 const userLogin = createSlice({
   name: "userLogin",
   initialState: {
-    data: localStorage.getItem("user"),
+    data:null,
     error: null,
     loading: true,
-    isAuthenticated: localStorage.getItem("user") ? true : false,
+    isAuthenticated: localStorage.getItem("user")!== undefined? true : false,
   },
   reducers: {
     userLogOut(state, action) {
       state.data = null;
-      state.err = null;
+      state.error = null;
       localStorage.clear("user");
       state.isAuthenticated = false;
     },
@@ -36,14 +37,14 @@ const userLogin = createSlice({
     [userLoginApi.fulfilled]: (state, action) => {
       state.loading = false;
       state.data = action.payload;
-      state.err = null;
+      state.error = null;
       state.isAuthenticated = true;
-      localStorage.setItem("user", action.payload);
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     [userLoginApi.rejected]: (state, action) => {
       state.loading = false;
       state.data = null;
-      state.err = action.payload;
+      state.error = action.payload;
       state.isAuthenticated = false;
     },
   },

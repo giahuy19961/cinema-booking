@@ -2,7 +2,7 @@ import NavHome from "components/NavHome";
 import React from "react";
 import { Route } from "react-router-dom";
 
-function HomeLayout({ children }) {
+export  function HomeLayout({ children }) {
   return (
     <div>
       <NavHome />

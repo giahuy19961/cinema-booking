@@ -1,11 +1,7 @@
 import Footer from "components/Footer";
 import React from "react";
 
-const TicketPage = ({
-  match: {
-    params: { id },
-  },
-}) => {
+const TicketPage = ({computedMatch:{params:{id}}}) => {
   return (
     <div>
       TicketPage was params {id}

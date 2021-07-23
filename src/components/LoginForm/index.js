@@ -8,15 +8,24 @@ import { userLoginApi } from "app/redux/reducer/userLogin";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [loginForm, setLoginForm] = useState({
-    username: "",
-    password: "",
+    taiKhoan: "",
+    matKhau: "",
   });
-  let { username, password } = loginForm;
+  let { taiKhoan, matKhau } = loginForm;
   const handleChange = (event) => {
     setLoginForm({ ...loginForm, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    if(taiKhoan === ""){
+      alert("Tai Khoan khong duoc de trong")
+      return
+    }
+    if(matKhau === ""){
+      alert("Mat Khau khong duoc de trong")
+      return
+
+    }
     dispatch(userLoginApi(loginForm));
   };
   return (
@@ -27,18 +36,18 @@ const LoginForm = () => {
           <Form.Control
             type='text'
             placeholder='Tên đăng nhập'
-            name='username'
+            name='taiKhoan'
             required
             onChange={handleChange}
-            value={username}
+            value={taiKhoan}
           />
         </Form.Group>
         <Form.Group className='mt-3 mb-3'>
           <Form.Control
             type='password'
             placeholder='Mật khẩu'
-            name='password'
-            value={password}
+            name='matKhau'
+            value={matKhau}
             onChange={handleChange}
             required
           />
