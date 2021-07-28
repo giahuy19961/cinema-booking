@@ -35,7 +35,7 @@ export const CardBody = styled.div`
 export const CardTitle = styled.h2`
   text-align: left;
   color: #ff2c1f;
-  font-size: 1.5rem;
+  font-size: ${(props) => (props.fontSize === "normal" ? "1rem" : "1.5rem")};
   @media (max-width: 1000px) {
     font-size: 1.2rem;
   }

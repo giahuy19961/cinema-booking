@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TicketWrap = styled.div`
   width: 100%;
-  height: 635px;
+  height: 800px;
   border: 1px solid #ccc;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -54,6 +54,12 @@ export const TicketBooked = styled(TicketSeat)`
     color: #ccc;
     cursor: default;
     user-select: none;
+  }
+`;
+export const TicketChoose = styled(TicketSeat)`
+  color: #ff2c1f;
+  &:hover {
+    color: #ff2c1f;
   }
 `;
 export const TicketVip = styled(TicketSeat)`

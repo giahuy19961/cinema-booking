@@ -20,12 +20,12 @@ const TicketBook = ({ phim }) => {
       </CardBody>
 
       <div>
-        <TicketCinemaName className='text-center'>
+        <CardTitle fontSize='normal' className='text-center'>
           Ngày chiếu :{phim.ngayChieu}
-        </TicketCinemaName>
-        <TicketCinemaName className='text-center'>
+        </CardTitle>
+        <CardTitle fontSize='normal' className='text-center'>
           Giờ chiếu :{phim.gioChieu}
-        </TicketCinemaName>
+        </CardTitle>
       </div>
     </CardWrap>
   );

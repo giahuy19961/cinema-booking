@@ -1,3 +1,4 @@
+import { CardBody } from "components/Card/MovieShowCard/styles";
 import styled from "styled-components";
 
 export const TicketBtn = styled.button`
@@ -16,4 +17,8 @@ export const TicketBtn = styled.button`
     font-size: 1.3rem;
     transition: all 0.2s ease-in-out;
   }
+`;
+
+export const TicketCardBody = styled(CardBody)`
+  min-height: 150px;
 `;
