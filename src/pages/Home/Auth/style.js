@@ -4,7 +4,7 @@ import background from "assets/img/backapp.jpg";
 export const AuthWrap = styled.div`
   position: relative;
   background: url("${background}") no-repeat center center/cover;
-  height: 91.4vh;
+  height: 100vh;
 `;
 export const AuthContent = styled.div`
   height: 80%;

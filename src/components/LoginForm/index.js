@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./style.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLoginApi } from "app/redux/reducer/userLogin";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.userLoginReducer);
   const [loginForm, setLoginForm] = useState({
     taiKhoan: "",
     matKhau: "",
@@ -17,17 +18,19 @@ const LoginForm = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(taiKhoan === ""){
-      alert("Tai Khoan khong duoc de trong")
-      return
+    if (taiKhoan === "") {
+      alert("Tai Khoan khong duoc de trong");
+      return;
     }
-    if(matKhau === ""){
-      alert("Mat Khau khong duoc de trong")
-      return
-
+    if (matKhau === "") {
+      alert("Mat Khau khong duoc de trong");
+      return;
     }
     dispatch(userLoginApi(loginForm));
   };
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
   return (
     <>
       <h1 className='form-header'>Đăng nhập</h1>

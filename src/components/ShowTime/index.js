@@ -118,7 +118,11 @@ const ShowTime = () => {
                 ).getMinutes();
 
                 return (
-                  <CardShow as={Link} to={`/ticket/${lichChieu.maLichChieu}`}>
+                  <CardShow
+                    key={index}
+                    as={Link}
+                    to={`/ticket/${lichChieu.maLichChieu}`}
+                  >
                     {hour}:{minute}
                   </CardShow>
                 );

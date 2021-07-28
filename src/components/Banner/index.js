@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import Carousel from "react-bootstrap/Carousel";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";

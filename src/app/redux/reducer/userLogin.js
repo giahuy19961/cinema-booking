@@ -3,10 +3,10 @@ import { userService } from "service";
 
 export const userLoginApi = createAsyncThunk(
   "userLogin/userLoginApi",
-  async (userForm,{rejectWithValue}) => {
+  async (userForm, { rejectWithValue }) => {
     try {
-      return await userService.userLoginApi(userForm);
-       
+      const response = await userService.userLoginApi(userForm);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -16,13 +16,17 @@ export const userLoginApi = createAsyncThunk(
 const userLogin = createSlice({
   name: "userLogin",
   initialState: {
-    data:null,
+    data:
+      !!localStorage.getItem("user") &&
+      JSON.parse(localStorage.getItem("user")),
     error: null,
     loading: true,
-    isAuthenticated: localStorage.getItem("user")!== undefined? true : false,
+    isAuthenticated:
+      !!localStorage.getItem("user") &&
+      !!JSON.parse(localStorage.getItem("user")).accessToken,
   },
   reducers: {
-    userLogOut(state, action) {
+    logOutUser(state, action) {
       state.data = null;
       state.error = null;
       localStorage.clear("user");

@@ -1,0 +1,32 @@
+.infoWrap:hover>.dropInfo-menu{
+    display:block;
+    transition: all 0.1s ease-in-out;
+}
+.toggle-show-info{
+    color:#fff;
+}
+.nav-info{
+    position: relative;
+    overflow-y: hidden;
+    min-height: 300px;
+    width:100%;
+    transition: all 0.1;
+}
+.toggle-show-info{
+    user-select: auto;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    font-size: 1.3rem;
+    
+}
+.user-logout{
+    color:#fff;
+    font-size:1.3rem;
+    
+}
+.user-logout:hover{
+    color:#ff2c1f;
+    cursor: pointer;
+
+}

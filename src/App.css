@@ -29,4 +29,45 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	vertical-align: baseline;
+  display: block;
+  text-decoration: none;
+}
+a ,.nav-link{
+  color:#000;
+
+}
+
+.nav-link:hover,a:hover{
+  color:#ff2c1f;
+}
+.dropdown-menu.show{
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px){
+  body{
+    overflow-x: hidden;
+    
+  }
+}
+.hide-on-mobile{
+  display:block !important;
+}
+.hide-on-pc{
+  display:none !important;
+}
+@media screen and (max-width:768px){
+  .hide-on-mobile{
+      display:none !important;
+
+  }
+  .hide-on-pc{
+      display:block !important;
+  }
+}
+.heading {
+  font-size: 2rem;
+  color:#ff2c1f;
+  text-align:center;
+  margin:20px auto;
 }

@@ -7,6 +7,7 @@ import listShowByTheaterReducer from "./listShowByTheater";
 import listShowMovieReducer from "./listShowMovie";
 import userLoginReducer from "./userLogin";
 import trailerReducer from "./trailer";
+import getTicketReducer from "./ticket";
 
 export const rootReducer = combineReducers({
   listMovieReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   listShowMovieReducer,
   trailerReducer,
   userLoginReducer,
+  getTicketReducer,
 });
