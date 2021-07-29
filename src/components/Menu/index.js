@@ -129,56 +129,40 @@ const Menu = () => {
     <div className='menu-nav'>
       <form className='menu-nav__content' type='submit' onSubmit={handleSubmit}>
         <div className='menu-nav__list--large'>
-          <select name='maPhim' onChange={handleChange}>
-            <option
-              value=''
-              selected
-              disabled
-              hidden
-              className='menu-nav__item'
-            >
+          <select
+            defaultValue={"DEFAULT"}
+            name='maPhim'
+            onChange={handleChange}
+          >
+            <option value='DEFAULT' disabled hidden className='menu-nav__item'>
               Chọn Phim
             </option>
             {renderListFilm(movies)}
           </select>
         </div>
         <div className='menu-nav__list--small'>
-          <select name='maCumRap' onChange={handleChange}>
-            <option
-              value=''
-              selected
-              disabled
-              hidden
-              className='menu-nav__item'
-            >
+          <select
+            defaultValue={"DEFAULT"}
+            name='maCumRap'
+            onChange={handleChange}
+          >
+            <option value='DEFAULT' disabled hidden className='menu-nav__item'>
               Chọn Cụm Rạp
             </option>
             {renderListCinema(showTime)}
           </select>
         </div>
-        <div className='menu-nav__list--small'>
+        <div defaultValue={"DEFAULT"} className='menu-nav__list--small'>
           <select name='date' onChange={handleChange}>
-            <option
-              value=''
-              selected
-              disabled
-              hidden
-              className='menu-nav__item'
-            >
+            <option value='DEFAULT' disabled hidden className='menu-nav__item'>
               Chọn ngày
             </option>
             {renderListDate(showTime)}
           </select>
         </div>
         <div className='menu-nav__list--small'>
-          <select name='time' onChange={handleChange}>
-            <option
-              value=''
-              selected
-              disabled
-              hidden
-              className='menu-nav__item'
-            >
+          <select defaultValue={"DEFAULT"} name='time' onChange={handleChange}>
+            <option value='DEFAULT' disabled hidden className='menu-nav__item'>
               Chọn giờ
             </option>
             {renderListTime(showTime)}

@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardWrap, CardBody } from "components/Card/MovieShowCard/styles";
 import { CardTitle } from "components/Card/MovieShowCard/styles";
 import { TicketBtn, TicketCardBody } from "./style";
 import { TicketBooked, TicketSeat, TicketVip } from "../TicketContainer/style";
 import WeekendIcon from "@material-ui/icons/Weekend";
 
-const TicketInfo = ({ seatInfo }) => {
-  const renderTotal = () => {
-    return seatInfo?.reduce((initialValue, currentValue) => {
-      return initialValue + currentValue.giaVe;
-    }, 0);
-  };
+const TicketInfo = ({ seatInfo, setModalShow, renderTotal }) => {
   return (
     <CardWrap className='p-3'>
       <div className='d-flex flex-column'>
@@ -39,15 +34,27 @@ const TicketInfo = ({ seatInfo }) => {
         </CardTitle>
         <div className='d-flex col-12 flex-wrap'>
           {seatInfo?.map((seat, index) => (
-            <span className='p-1'>{seat.tenGhe}</span>
+            <span key={index} className='p-1'>
+              {seat.tenGhe}
+            </span>
           ))}
         </div>
       </TicketCardBody>
       <CardBody className='justify-content-between'>
         <CardTitle fontSize='normal'>Tổng tiền :</CardTitle>
-        <div className='text-color-primary'>{renderTotal()} VND</div>
+        <div className='text-color-primary'>{renderTotal(seatInfo)} VND</div>
       </CardBody>
-      <TicketBtn> Mua vé</TicketBtn>
+      <TicketBtn
+        onClick={() => {
+          if (seatInfo.length > 0) {
+            setModalShow(true);
+          } else {
+            alert("Vui lòng chọn vé");
+          }
+        }}
+      >
+        Đặt vé
+      </TicketBtn>
     </CardWrap>
   );
 };

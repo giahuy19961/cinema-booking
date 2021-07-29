@@ -3,11 +3,11 @@ import { cinemaService } from "service";
 
 export const listCinemaById = createAsyncThunk(
   "listTheater/getListCinemaByTheaterId",
-  async (maHeThongRap) => {
+  async (maHeThongRap, { rejectWithValue }) => {
     try {
       return await cinemaService.layThongTinCumRapTheoHeThong(maHeThongRap);
     } catch (error) {
-      console.log(error);
+      rejectWithValue(error.response.data);
     }
   }
 );

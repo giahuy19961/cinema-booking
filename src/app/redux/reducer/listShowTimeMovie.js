@@ -3,11 +3,11 @@ import { movieService } from "service";
 
 export const listShowTimeMovieApi = createAsyncThunk(
   "listMovie/getShowTime",
-  async (maPhim) => {
+  async (maPhim, { rejectWithValue }) => {
     try {
       return await movieService.layThongTinLichChieuPhimApi(maPhim);
     } catch (error) {
-      console.log(error);
+      rejectWithValue(error.response.data);
     }
   }
 );

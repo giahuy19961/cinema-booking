@@ -34,7 +34,7 @@ const routeHome = [
     authRoute: "register",
     Component: AuthHome,
     exact: false,
-    isLogin:false,
+    isLogin: false,
   },
 ];
 

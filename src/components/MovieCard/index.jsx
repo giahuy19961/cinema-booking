@@ -24,7 +24,7 @@ const MovieCard = ({ movie }) => {
       </button>
       <Card.Body>
         <Card.Title className='card-title'>{movie.tenPhim}</Card.Title>
-        <Card.Text>
+        <div>
           <StarRatings
             rating={movie.danhGia / 2}
             starRatedColor='orange'
@@ -33,7 +33,7 @@ const MovieCard = ({ movie }) => {
             starDimension='25px'
             starSpacing='3px'
           />
-        </Card.Text>
+        </div>
         <Button className='btn-card' as={Link} to={`movie/${movie.maPhim}`}>
           MUA VÉ
         </Button>

@@ -3,11 +3,11 @@ import { cinemaService } from "service";
 
 export const listTheatersApi = createAsyncThunk(
   "listTheaters/getList",
-  async () => {
+  async (params, { rejectWithValue }) => {
     try {
       return await cinemaService.layThongTinHeThongRap();
     } catch (error) {
-      console.log(error);
+      rejectWithValue(error.response.data);
     }
   }
 );

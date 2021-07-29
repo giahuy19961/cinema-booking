@@ -2,13 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { movieService } from "service";
 
 // Reducer Thunk
-export const listMovieApi = createAsyncThunk("listMovie/getList", async () => {
-  try {
-    return await movieService.layDanhSachPhimApi();
-  } catch (error) {
-    console.log(error);
+export const listMovieApi = createAsyncThunk(
+  "listMovie/getList",
+  async (params, { rejectWithValue }) => {
+    try {
+      return await movieService.layDanhSachPhimApi();
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
   }
-});
+);
 
 const listMovie = createSlice({
   name: "listMovie",

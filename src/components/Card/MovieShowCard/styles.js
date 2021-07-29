@@ -59,7 +59,7 @@ export const CardShow = styled(Link)`
   text-decoration: none;
   &:hover {
     background-color: #ff2c1f;
-    width: 105px;
+    font-size: 1.1rem;
     color: #fff;
     transition: all 0.2s ease-in-out;
   }

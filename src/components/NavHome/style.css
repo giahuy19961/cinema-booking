@@ -10,7 +10,8 @@
     overflow-y: hidden;
     min-height: 300px;
     width:100%;
-    transition: all 0.1;
+    transition: all 0.1s;
+    
 }
 .toggle-show-info{
     user-select: auto;

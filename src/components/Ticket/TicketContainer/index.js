@@ -10,6 +10,7 @@ import {
   TicketChoose,
 } from "./style";
 import WeekendIcon from "@material-ui/icons/Weekend";
+import { Fragment } from "react";
 
 const TicketContainer = ({ danhSachGhe, handleChooseSeat, seatInfo }) => {
   const renderListSeat = () => {
@@ -23,48 +24,48 @@ const TicketContainer = ({ danhSachGhe, handleChooseSeat, seatInfo }) => {
         }
         if (indexSeat !== -1) {
           return (
-            <>
-              <TicketChoose onClick={() => handleChooseSeat(seat)} key={index}>
+            <Fragment key={index}>
+              <TicketChoose onClick={() => handleChooseSeat(seat)}>
                 <WeekendIcon fontSize='large' />
                 <TicketNumber>{seat.tenGhe}</TicketNumber>
               </TicketChoose>
               {(index + 1) % 16 === 0 ? <br /> : ""}
-            </>
+            </Fragment>
           );
         } else {
           if (seat.loaiGhe === "Thuong") {
             return (
-              <>
-                <TicketSeat onClick={() => handleChooseSeat(seat)} key={index}>
+              <Fragment key={index}>
+                <TicketSeat onClick={() => handleChooseSeat(seat)}>
                   <WeekendIcon fontSize='large' />
                   <TicketNumber>{seat.tenGhe}</TicketNumber>
                 </TicketSeat>
                 {(index + 1) % 16 === 0 ? <br /> : ""}
-              </>
+              </Fragment>
             );
           }
           if (seat.loaiGhe === "Vip") {
             return (
-              <>
-                <TicketVip onClick={() => handleChooseSeat(seat)} key={index}>
+              <Fragment key={index}>
+                <TicketVip onClick={() => handleChooseSeat(seat)}>
                   <WeekendIcon fontSize='large' />
                   <TicketNumber>{seat.tenGhe}</TicketNumber>
                 </TicketVip>
                 {(index + 1) % 16 === 0 ? <br /> : ""}
-              </>
+              </Fragment>
             );
           }
         }
       }
 
       return (
-        <>
-          <TicketBooked key={index}>
+        <Fragment key={index}>
+          <TicketBooked>
             <WeekendIcon fontSize='large' />
             <TicketNumber>{seat.tenGhe}</TicketNumber>
           </TicketBooked>
           {(index + 1) % 16 === 0 ? <br /> : ""}
-        </>
+        </Fragment>
       );
     });
   };

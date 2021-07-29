@@ -43,6 +43,9 @@ a ,.nav-link{
 .dropdown-menu.show{
   margin-top: 10px;
 }
+.padding-top-page{
+  padding-top:80px !important;
+}
 
 @media screen and (max-width: 768px){
   body{
@@ -69,6 +72,18 @@ a ,.nav-link{
   font-size: 2rem;
   color:#ff2c1f;
   text-align:center;
+  margin:20px auto;
+}
+.text-large {
+  font-size: 1.5rem;
+  color:#ff2c1f;
+  
+  margin:20px auto;
+}
+.text-small {
+  font-size: 1rem;
+  color:#ff2c1f;
+  
   margin:20px auto;
 }
 .text-color-primary {

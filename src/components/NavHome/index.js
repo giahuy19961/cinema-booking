@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,7 +17,7 @@ import {
   NavInfoLink,
 } from "./style";
 import { logOutUser } from "app/redux/reducer/userLogin";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 
 const NavHome = () => {
@@ -30,6 +30,29 @@ const NavHome = () => {
 
   const [open, setOpen] = useState(false);
   const [infoShow, setInfoShow] = useState(false);
+  const [isChangeBg, setChangeBg] = useState(false);
+
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    const yOffset = -20;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
+  };
+  const setPage = () => {
+    if (window.pageYOffset >= 50) {
+      setChangeBg(true);
+    } else {
+      setChangeBg(false);
+    }
+  };
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", setPage);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", setPage);
+    };
+  });
 
   // router
   const history = useHistory();
@@ -123,8 +146,8 @@ const NavHome = () => {
     );
   };
   return (
-    <NavContainer>
-      <Logo smooth to='/#'>
+    <NavContainer open={open} isChangeBg={isChangeBg}>
+      <Logo smooth to='/'>
         <h1>Logo</h1>
       </Logo>
       <Bars
@@ -140,7 +163,7 @@ const NavHome = () => {
           smooth
           to='/#menu'
           activeStyle={{ color: "#ff2c1f" }}
-          showInfo={infoShow}
+          showinfo={infoShow ? 1 : 0}
         >
           Menu
         </NavLink>
@@ -150,8 +173,9 @@ const NavHome = () => {
           }}
           smooth
           to='/#movies'
+          scroll={(el) => scrollWithOffset(el)}
           activeStyle={{ color: "#ff2c1f" }}
-          showInfo={infoShow}
+          showinfo={infoShow ? 1 : 0}
         >
           Movie
         </NavLink>
@@ -161,8 +185,9 @@ const NavHome = () => {
           }}
           smooth
           to='/#theaters'
+          scroll={(el) => scrollWithOffset(el)}
           activeStyle={{ color: "#ff2c1f" }}
-          showInfo={infoShow}
+          showinfo={infoShow ? 1 : 0}
         >
           Theater
         </NavLink>

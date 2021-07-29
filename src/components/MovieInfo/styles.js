@@ -62,6 +62,7 @@ export const BuyTicketBtn = styled.button`
   color: #ff2c1f;
   width: 60%;
   border: none;
+  text-align: center;
   border-color: transparent;
   padding: 10px 20px;
   border-radius: 5px;

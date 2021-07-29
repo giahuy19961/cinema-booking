@@ -5,8 +5,7 @@ export const userLoginApi = createAsyncThunk(
   "userLogin/userLoginApi",
   async (userForm, { rejectWithValue }) => {
     try {
-      const response = await userService.userLoginApi(userForm);
-      return response.data;
+      return await userService.userLoginApi(userForm);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

@@ -4,19 +4,29 @@ import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 
 export const NavContainer = styled.nav`
-  background: #000;
+  background: ${(props) =>
+    props.isChangeBg
+      ? "rgba(33, 33, 33, 0.882)"
+      : "linear-gradient(to bottom,rgba(0,0,0,.7) ,rgba(0,0,0,0))"};
+  box-shadow: none;
   height: 80px;
-
   display: flex;
+  top: 0;
   justify-content: space-between;
   padding: 0.5rem 20px;
   z-index: 999;
-  // position: fixed;
+  position: fixed;
   width: 100%;
   @media screen and (max-width: 768px) {
-  }
+    background: ${(props) =>
+      props.open
+        ? "#000"
+        : props.isChangeBg
+        ? "rgba(33, 33, 33, 0.882)"
+        : "linear-gradient(to bottom,rgba(0,0,0,.7) ,rgba(0,0,0,0))"};
+    transition: background 0.05s;
+  } ;
 `;
-
 export const Logo = styled(NavHashLink)`
   color: #fff;
   display: flex;
@@ -43,13 +53,13 @@ export const NavLink = styled(Logo)`
     color: #ff2c1f;
   }
   @media screen and (max-width: 768px) {
-    margin: ${(props) => (props.showInfo ? "0 auto" : "40px auto")};
-    max-height:${(props) => (props.showInfo ? "50px" : "100px")}
+    margin: ${(props) => (props.showinfo ? "0 auto" : "40px auto")};
+    max-height:${(props) => (props.showinfo ? "50px" : "100px")}
     width: 100%;
     text-align: center;
     display: block;
     
-    font-size:${(props) => (props.showInfo ? "1.4rem" : "1.5rem")};
+    font-size:${(props) => (props.showinfo ? "1.4rem" : "1.5rem")};
   }
 `;
 export const NavInfoLink = styled(NavLink)`
@@ -89,6 +99,7 @@ export const NavMenu = styled.div`
     width: 100%;
     left: ${(props) => (props.open ? "0" : "100%")};
     transition: all 0.2s ease-in-out;
+    z-index: 999;
   }
 `;
 
@@ -124,6 +135,7 @@ export const InfoWrap = styled(NavContainer)`
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: transparent;
 `;
 export const DropDownMenu = styled.div`
   display: flex;

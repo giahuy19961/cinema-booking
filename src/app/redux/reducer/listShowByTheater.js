@@ -4,11 +4,11 @@ import { movieService } from "service";
 // Reducer Thunk
 export const listShowByTheaterApi = createAsyncThunk(
   "listShowByTheaterApi/getList",
-  async (maHeThongRap) => {
+  async (maHeThongRap, { rejectWithValue }) => {
     try {
       return await movieService.layThongTinLichChieuHeThongRapApi(maHeThongRap);
     } catch (error) {
-      console.log(error);
+      rejectWithValue(error.response.data);
     }
   }
 );
