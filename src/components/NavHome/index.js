@@ -63,13 +63,11 @@ const NavHome = () => {
           <InfoWrap className='infoWrap hide-on-mobile'>
             <Avatar>A</Avatar>
             <DropDownMenu className='dropInfo-menu'>
-              <DropDownItem disabled={true} to='/user/info'>
+              <DropDownItem disabled={true} to='/account'>
                 {data?.hoTen}
               </DropDownItem>
               <NavDropdown.Divider />
-              <DropDownItem to='/user/ticket-history'>
-                Lịch sử đặt vé
-              </DropDownItem>
+              <DropDownItem to='/account'>Lịch sử đặt vé</DropDownItem>
               <NavDropdown.Divider />
               {data?.maLoaiNguoiDung === "QuanTri" ? (
                 <>
@@ -98,7 +96,7 @@ const NavHome = () => {
             <NavInfor open={infoShow}>
               <NavInfoLink
                 smooth
-                to='/user/setting'
+                to='/account'
                 activeStyle={{ color: "#ff2c1f" }}
               >
                 {data?.hoTen}
@@ -106,7 +104,7 @@ const NavHome = () => {
 
               <NavInfoLink
                 smooth
-                to='/user/ticket'
+                to='/account'
                 activeStyle={{ color: "#ff2c1f" }}
               >
                 Lịch sử đặt vé
@@ -184,7 +182,7 @@ const NavHome = () => {
             setOpen(!open);
           }}
           smooth
-          to='/#theaters'
+          to='/theater#theater'
           scroll={(el) => scrollWithOffset(el)}
           activeStyle={{ color: "#ff2c1f" }}
           showinfo={infoShow ? 1 : 0}

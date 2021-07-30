@@ -96,14 +96,14 @@ const TicketPage = ({
           {data?.thongTinPhim.tenPhim}
         </CardTitle>
         <div className='row'>
-          <div className='col-9'>
+          <div className='col-xxl-9 col-lg-12'>
             <TicketContainer
               danhSachGhe={data?.danhSachGhe}
               handleChooseSeat={handleChooseSeat}
               seatInfo={seatInfo}
             />
           </div>
-          <div className='col-3'>
+          <div className='col-xxl-3'>
             <div className='row'>
               <div className='col-12'>
                 <TicketBook phim={data?.thongTinPhim} />

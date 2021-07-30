@@ -1,21 +1,24 @@
 import CinemaCard from "components/Card/CinemaCard";
 import { CardShow } from "components/Card/MovieShowCard/styles";
-import { ListMoviesDetail } from "./styles";
+import {
+  ListDetailCinema,
+  ListMoviesDetail,
+  ListDetailTheater,
+  TheaterDetailWrap,
+  TheatersDetailContainer,
+} from "./styles";
 import {
   Header,
   Logo,
-  TheatersContainer,
   TheaterTime,
   TheaterTimeNav,
-  TheaterWrap,
 } from "components/Theaters/styles";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const ShowTime = () => {
   // router
-  const history = useHistory();
   // Global redux state
   const { heThongRapChieu } = useSelector(
     (state) => state.listShowMovieReducer.data
@@ -54,7 +57,7 @@ const ShowTime = () => {
   const renderTheater = () => {
     return heThongRapChieu?.map((heThongRap, index) => {
       return (
-        <div className='col ' key={index}>
+        <div className='col-2' key={index}>
           <Logo
             type='button'
             key={index}
@@ -119,6 +122,7 @@ const ShowTime = () => {
 
                 return (
                   <CardShow
+                    className='col-2'
                     key={index}
                     as={Link}
                     to={`/ticket/${lichChieu.maLichChieu}`}
@@ -146,23 +150,25 @@ const ShowTime = () => {
     setDefaultCinema(theater);
   }, [theater]);
   return (
-    <TheaterWrap>
+    <TheaterDetailWrap>
       <Header className='mt-5' id='lich-chieu'>
         Chọn lịch chiếu
       </Header>
-      <TheatersContainer>
-        <div className='row'>{renderTheater()}</div>
+      <TheatersDetailContainer>
+        <ListDetailTheater className='row'>{renderTheater()}</ListDetailTheater>
         <div className='row'>
-          <div className='col-4' style={{ borderLeft: "1px solid #ccc" }}>
+          <ListDetailCinema className='col-xxl-4 col-xl-12'>
             {renderCinema()}
-          </div>
-          <div className='col-8'>
+          </ListDetailCinema>
+          <div className='col-xxl-8 col-xl-12'>
             <TheaterTimeNav>{renderTimeNav()}</TheaterTimeNav>
-            <ListMoviesDetail>{renderListShow()}</ListMoviesDetail>
+            <ListMoviesDetail className='container'>
+              <div className='row'>{renderListShow()}</div>
+            </ListMoviesDetail>
           </div>
         </div>
-      </TheatersContainer>
-    </TheaterWrap>
+      </TheatersDetailContainer>
+    </TheaterDetailWrap>
   );
 };
 

@@ -5,6 +5,7 @@ export const TicketWrap = styled.div`
   height: 800px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  overflow: scroll;
   border: 1px solid #ccc;
   background-color: #fff;
   justify-content: center;
@@ -14,6 +15,9 @@ export const TicketWrap = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width: 1400px) {
+    height: auto;
+  }
 `;
 export const TicketScreen = styled.div`
   background-color: #ff2c1f;

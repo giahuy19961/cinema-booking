@@ -20,6 +20,7 @@ export const CardImg = styled.img`
   height: 100%;
   margin: 0 10px;
   border-color: #fff;
+
   @media (max-width: 768px) {
     width: 160px;
     height: 100px;
@@ -38,6 +39,9 @@ export const CardTitle = styled.h2`
   font-size: ${(props) => (props.fontSize === "normal" ? "1rem" : "1.5rem")};
   @media (max-width: 1000px) {
     font-size: 1.2rem;
+  }
+  @media (max-width: 768px) {
+    padding-right: 15px;
   }
 `;
 export const CardShowBody = styled.div`

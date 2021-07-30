@@ -9,6 +9,8 @@ export const TheaterWrap = styled.div`
 
 export const Header = styled.h1`
   color: #ff2c1f;
+  padding-top: 50px;
+
   text-align: center;
   margin: 20px auto;
   font-size: 2rem;
@@ -62,11 +64,12 @@ export const ListMovies = styled.ul`
 export const TheaterTimeNav = styled.ul`
   list-style: none;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 export const TheaterTime = styled.li`
   margin: 5px;
+  display: block;
   width: 50px;
   height: 30px;
   text-align: center;
