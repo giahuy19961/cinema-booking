@@ -22,6 +22,7 @@ export const TheatersContainer = styled(Container)`
   max-height: 700px;
   min-height: 550px;
   margin: 20px auto;
+  overflow: hidden;
 `;
 
 export const MenuTheater = styled.ul`
@@ -57,8 +58,9 @@ export const ListMovies = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
-  height: 95%;
+  height: 630px;
   padding-left: 0;
+  overflow-y: scroll;
 `;
 
 export const TheaterTimeNav = styled.ul`

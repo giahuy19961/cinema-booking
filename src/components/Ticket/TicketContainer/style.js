@@ -5,7 +5,6 @@ export const TicketWrap = styled.div`
   height: 800px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  overflow: scroll;
   border: 1px solid #ccc;
   background-color: #fff;
   justify-content: center;

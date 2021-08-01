@@ -76,7 +76,7 @@ const Theaters = () => {
     }
   };
   const renderListShowTime = () => {
-    let dataDate = "";
+    let film = "";
     if (listShowByTheater !== null) {
       return listShowByTheater[0].lstCumRap.map((item, index) => {
         if (item.maCumRap === cinema) {
@@ -86,8 +86,8 @@ const Theaters = () => {
                 lich.ngayChieuGioChieu
               ).toLocaleDateString();
               if (currentDay === date) {
-                if (dataDate !== currentDay) {
-                  dataDate = currentDay;
+                if (phim.tenPhim !== film) {
+                  film = phim.tenPhim;
                   return <MovieShowCard key={index} phim={phim} date={date} />;
                 }
               }

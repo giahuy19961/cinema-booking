@@ -1,14 +1,14 @@
+import { FormLabel } from "react-bootstrap";
 import styled from "styled-components";
 
-import { Container } from "react-bootstrap";
-
-export const AccountContainer = styled(Container)`
+export const AccountContainer = styled.div`
   padding: 20px;
   background-color: #fff;
-  min-height: 300px;
+  min-height: 600px;
   border-radius: 5px;
   box-shadow: 5px 5px 5px #555;
   border: 1px solid grey;
+  width: 1200px;
 `;
 export const AccountTabs = styled.div`
   display: flex;
@@ -28,6 +28,26 @@ export const AccountTab = styled.div`
   }
 `;
 export const AccountContent = styled.div`
-  height: 100%;
   color: #000;
+`;
+export const HistoryContent = styled.div`
+  width: 100%;
+  height: 650px;
+  overflow-y: scroll;
+`;
+export const AccountTextTitle = styled.div`
+  font-size: 1.2rem;
+  text-align: left;
+`;
+export const AccountText = styled.div`
+  font-size: 1.1rem;
+  text-align: left;
+`;
+export const FormTitle = styled(FormLabel)`
+  font-size: 1rem;
+  text-align: left;
+  font-weight: bold;
+  color: #ff2c1f;
+  width: 100%;
+  margin-top: 15px;
 `;

@@ -8,7 +8,10 @@ import {
   TheaterWrap,
 } from "components/Theaters/styles";
 
-export const ListMoviesDetail = styled(ListMovies)``;
+export const ListMoviesDetail = styled(ListMovies)`
+  height: 960px;
+  overflow-y: scroll;
+`;
 export const ListDetailCinema = styled(ListCinema)`
   height: 600px;
   @media (max-width: 1400px) {

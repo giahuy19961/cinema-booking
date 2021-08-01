@@ -8,6 +8,8 @@ import listShowMovieReducer from "./listShowMovie";
 import userLoginReducer from "./userLogin";
 import trailerReducer from "./trailer";
 import getTicketReducer from "./ticket";
+import userInfoReducer from "./userInfo";
+import editUserReducer from "./editUserInfo";
 
 export const rootReducer = combineReducers({
   listMovieReducer,
@@ -19,4 +21,6 @@ export const rootReducer = combineReducers({
   trailerReducer,
   userLoginReducer,
   getTicketReducer,
+  userInfoReducer,
+  editUserReducer,
 });

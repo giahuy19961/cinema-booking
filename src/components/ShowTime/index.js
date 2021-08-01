@@ -163,7 +163,9 @@ const ShowTime = () => {
           <div className='col-xxl-8 col-xl-12'>
             <TheaterTimeNav>{renderTimeNav()}</TheaterTimeNav>
             <ListMoviesDetail className='container'>
-              <div className='row'>{renderListShow()}</div>
+              <div className='row ' style={{ paddingLeft: "20px" }}>
+                {renderListShow()}
+              </div>
             </ListMoviesDetail>
           </div>
         </div>

@@ -29,7 +29,6 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	vertical-align: baseline;
-  display: block;
   text-decoration: none;
 }
 a ,.nav-link{
@@ -88,4 +87,7 @@ a ,.nav-link{
 }
 .text-color-primary {
   color:#ff2c1f;
+}
+.tex-align-left{
+  text-align:left;
 }
