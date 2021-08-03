@@ -31,6 +31,9 @@ const userLogin = createSlice({
       localStorage.clear("user");
       state.isAuthenticated = false;
     },
+    updateUser(state, action) {
+      state.data = JSON.parse(localStorage.getItem("user"));
+    },
   },
   extraReducers: {
     [userLoginApi.pending]: (state, action) => {
@@ -55,6 +58,6 @@ const userLogin = createSlice({
 
 const userLoginReducer = userLogin.reducer;
 
-export const { logOutUser } = userLogin.actions;
+export const { logOutUser, updateUser } = userLogin.actions;
 
 export default userLoginReducer;

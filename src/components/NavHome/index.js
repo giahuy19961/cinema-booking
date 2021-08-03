@@ -182,6 +182,20 @@ const NavHome = () => {
             setOpen(!open);
           }}
           smooth
+          className='hide-on-mobile display-flex-pc '
+          to='/#theaterpc'
+          scroll={(el) => scrollWithOffset(el)}
+          activeStyle={{ color: "#ff2c1f" }}
+          showinfo={infoShow ? 1 : 0}
+        >
+          Theater
+        </NavLink>
+        <NavLink
+          onClick={() => {
+            setOpen(!open);
+          }}
+          smooth
+          className='hide-on-pc '
           to='/theater#theater'
           scroll={(el) => scrollWithOffset(el)}
           activeStyle={{ color: "#ff2c1f" }}
@@ -189,6 +203,7 @@ const NavHome = () => {
         >
           Theater
         </NavLink>
+
         {renderLogin()}
       </NavMenu>
     </NavContainer>

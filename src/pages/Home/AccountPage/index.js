@@ -6,7 +6,6 @@ import { AuthContent, AuthWrap } from "../Auth/style";
 import {
   AccountInfo,
   EditPassword,
-  EditProfile,
   ModalEditInfo,
   TicketHistory,
 } from "./content";
@@ -20,6 +19,8 @@ import {
 const AccountPage = () => {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
+  const [typeModal, setTypeModal] = useState("editInfo");
+  const [currentTicket, setCurrentTicket] = useState(null);
   const {
     data: { taiKhoan },
   } = useSelector((state) => state.userLoginReducer);
@@ -33,11 +34,22 @@ const AccountPage = () => {
         return <EditPassword />;
       }
       case "history": {
-        return <TicketHistory />;
+        return (
+          <TicketHistory
+            setModalShow={setModalShow}
+            setTypeModal={setTypeModal}
+            setCurrentTicket={setCurrentTicket}
+          />
+        );
       }
 
       default: {
-        return <AccountInfo setModalShow={setModalShow} />;
+        return (
+          <AccountInfo
+            setModalShow={setModalShow}
+            setTypeModal={setTypeModal}
+          />
+        );
       }
     }
   };
@@ -54,18 +66,18 @@ const AccountPage = () => {
           <AccountContainer>
             <div className='container'>
               <div className='row'>
-                <AccountTabs className='col-3'>
+                <AccountTabs className='col-xxl-3 col-xl-12'>
                   <AccountTab
                     active={type === "account" ? true : false}
                     onClick={() => setType("account")}
                   >
-                    Thông tin người dùng
+                    Thông tin cá nhân
                   </AccountTab>
                   <AccountTab
                     active={type === "password" ? true : false}
                     onClick={() => setType("password")}
                   >
-                    Chỉnh sửa thông tin
+                    Thay đổi mật khẩu
                   </AccountTab>
                   <AccountTab
                     active={type === "history" ? true : false}
@@ -74,7 +86,7 @@ const AccountPage = () => {
                     Lịch sử đặt vé
                   </AccountTab>
                 </AccountTabs>
-                <AccountContent className='col-9'>
+                <AccountContent className='col-xxl-9 col-xl-12  p-4'>
                   {renderContent()}
                 </AccountContent>
               </div>
@@ -82,7 +94,12 @@ const AccountPage = () => {
           </AccountContainer>
         </AuthContent>
       </AuthWrap>
-      <ModalEditInfo show={modalShow} onHide={() => setModalShow(false)} />
+      <ModalEditInfo
+        content={typeModal}
+        ticket={currentTicket}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 };

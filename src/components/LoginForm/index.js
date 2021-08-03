@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
+import { Validate } from "utils/Validate";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginApi } from "app/redux/reducer/userLogin";
@@ -18,15 +19,13 @@ const LoginForm = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (taiKhoan === "") {
-      alert("Tai Khoan khong duoc de trong");
-      return;
+    const errors = Validate({
+      username: taiKhoan,
+      password: matKhau,
+    });
+    if (Object.keys(errors).length === 0) {
+      dispatch(userLoginApi(loginForm));
     }
-    if (matKhau === "") {
-      alert("Mat Khau khong duoc de trong");
-      return;
-    }
-    dispatch(userLoginApi(loginForm));
   };
   if (isAuthenticated) {
     return <Redirect to='/' />;

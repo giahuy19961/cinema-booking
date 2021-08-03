@@ -9,6 +9,13 @@ export default class UserService {
 
     return response.data;
   };
+  userRegisterApi = async (registerForm) => {
+    const response = await axios.post(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/DangKy`,
+      registerForm
+    );
+    return response.data;
+  };
   getAccountInfoApi = async (taiKhoan) => {
     const response = await axios.post(
       `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/ThongTinTaiKhoan`,

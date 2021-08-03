@@ -24,6 +24,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  ListMovieDetailMobile,
   TheaterMobileCinema,
   TheaterMobileWrap,
   TheatersMobileContainer,
@@ -165,7 +166,9 @@ const TheaterPage = () => {
 
         <div className='row'>
           <div className='col-12'>
-            <ListMoviesDetail>{renderListShowTime()}</ListMoviesDetail>
+            <ListMovieDetailMobile>
+              {renderListShowTime()}
+            </ListMovieDetailMobile>
           </div>
         </div>
       </TheatersMobileContainer>

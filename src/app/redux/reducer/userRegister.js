@@ -1,35 +1,35 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "service";
 
-export const editUserApi = createAsyncThunk(
-  "userInfo/editUser",
-  async ({ editForm, accessToken }, { rejectWithValue }) => {
+export const userRegisterApi = createAsyncThunk(
+  "userRegister/userRegisterApi",
+  async (registerForm, { rejectWithValue }) => {
     try {
-      return await userService.editUserInfoApi(editForm, accessToken);
+      return await userService.userRegisterApi(registerForm);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-const editUser = createSlice({
-  name: "editUser",
+const userRegister = createSlice({
+  name: "userLogin",
   initialState: {
-    loading: true,
     data: null,
     error: null,
+    loading: true,
   },
   reducers: {},
   extraReducers: {
-    [editUserApi.pending]: (state, action) => {
+    [userRegisterApi.pending]: (state, action) => {
       state.loading = true;
     },
-    [editUserApi.fulfilled]: (state, action) => {
+    [userRegisterApi.fulfilled]: (state, action) => {
       state.loading = false;
       state.data = action.payload;
       state.error = null;
     },
-    [editUserApi.rejected]: (state, action) => {
+    [userRegisterApi.rejected]: (state, action) => {
       state.loading = false;
       state.data = null;
       state.error = action.payload;
@@ -37,6 +37,6 @@ const editUser = createSlice({
   },
 });
 
-const editUserReducer = editUser.reducer;
+const userRegisterReducer = userRegister.reducer;
 
-export default editUserReducer;
+export default userRegisterReducer;

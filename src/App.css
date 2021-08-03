@@ -67,6 +67,21 @@ a ,.nav-link{
       display:block !important;
   }
 }
+.hide-on-mobile-flex{
+ 
+}
+.hide-on-pc-flex{
+  
+}
+@media screen and (max-width:768px){
+  .hide-on-mobile-flex{
+      display:none !important;
+
+  }
+  .hide-on-pc-flex{
+      display:flex !important;
+  }
+}
 .heading {
   font-size: 2rem;
   color:#ff2c1f;

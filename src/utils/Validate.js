@@ -1,10 +1,9 @@
-export const Validate = (values) => {
+export const Validate = (values, passwordValid) => {
   let errors = {};
-  console.log(values);
+  console.log(values.hoTen, passwordValid);
 
   // hoTen
   if (values.hoTen !== undefined) {
-    console.log("nhay vao day");
     if (!values.hoTen.trim()) {
       errors.hoTen = "Họ tên không được để trống";
     }
@@ -18,6 +17,14 @@ export const Validate = (values) => {
       !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)
     ) {
       errors.email = "Email không hợp lệ";
+    }
+  }
+  // currentPassword
+  if (values.currentPassword !== undefined) {
+    if (!values.currentPassword.trim()) {
+      errors.currentPassword = "Mật khẩu cũ không được để trống";
+    } else if (values.currentPassword !== passwordValid) {
+      errors.currentPassword = "Mật khẩu cũ chưa chính xác";
     }
   }
 
@@ -43,8 +50,8 @@ export const Validate = (values) => {
 
   // username
   if (values.username !== undefined) {
-    if (!values.hoTen.trim()) {
-      errors.hoTen = "Họ tên không được để trống";
+    if (!values.username.trim()) {
+      errors.username = "Họ tên không được để trống";
     }
   }
 

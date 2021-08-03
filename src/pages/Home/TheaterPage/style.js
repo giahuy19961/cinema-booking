@@ -1,3 +1,4 @@
+import { ListMoviesDetail } from "components/ShowTime/styles";
 import { TheatersContainer, TheaterWrap } from "components/Theaters/styles";
 import styled from "styled-components";
 
@@ -23,4 +24,8 @@ export const TheatersMobileContainer = styled(TheatersContainer)`
   padding: 20px;
   overflow: hidden;
   max-height: none;
+`;
+export const ListMovieDetailMobile = styled(ListMoviesDetail)`
+  height: 960px;
+  overflow-y: scroll;
 `;

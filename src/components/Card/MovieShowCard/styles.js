@@ -5,7 +5,7 @@ export const CardWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 92%;
-  min-height: 300px;
+  min-height: 360px;
   border: 1px solid #ccc;
   display: flex;
   background-color: #fff;
@@ -18,13 +18,13 @@ export const CardImg = styled.img`
   display: block;
   width: 30%;
   height: 100%;
-  margin: 0 10px;
   border-color: #fff;
+  margin: 0 10px;
 
   @media (max-width: 768px) {
     width: 160px;
     height: 100px;
-    margin: 5px auto;
+    margin: 0 10px;
   }
 `;
 export const CardBody = styled.div`

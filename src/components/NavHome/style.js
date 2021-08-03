@@ -42,7 +42,7 @@ export const Logo = styled(NavHashLink)`
 
 export const NavLink = styled(Logo)`
   color: #fff;
-  display: flex;
+  display: flex ;
   align-items: center;
   text-align: center;
   text-decoration: none;

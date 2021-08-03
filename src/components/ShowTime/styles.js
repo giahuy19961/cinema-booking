@@ -9,28 +9,32 @@ import {
 } from "components/Theaters/styles";
 
 export const ListMoviesDetail = styled(ListMovies)`
-  height: 960px;
-  overflow-y: scroll;
+  overflow-y: hidden;
 `;
 export const ListDetailCinema = styled(ListCinema)`
   height: 600px;
+  overflow-y: scroll;
   @media (max-width: 1400px) {
     height: 160px;
     display: flex;
     flex-direction: row;
     border: none;
+    overflow-x: scroll;
+    overflow-y: hidden;
     width: 100%;
   }
 `;
 export const ListDetailTheater = styled(MenuTheater)`
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  // align-items: center;
   border: none;
-
   width: 100%;
   flex-wrap: nowrap;
-  height: 80px;
+  height: 100px;
+  @media (max-width: 768px) {
+    overflow-x: scroll;
+  }
 `;
 export const TheaterDetailWrap = styled(TheaterWrap)`
   @media (max-width: 768px) {

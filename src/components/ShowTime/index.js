@@ -57,7 +57,7 @@ const ShowTime = () => {
   const renderTheater = () => {
     return heThongRapChieu?.map((heThongRap, index) => {
       return (
-        <div className='col-2' key={index}>
+        <div className='col ' key={index}>
           <Logo
             type='button'
             key={index}

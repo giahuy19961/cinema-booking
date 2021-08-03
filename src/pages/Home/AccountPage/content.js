@@ -6,11 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   AccountText,
   AccountTextTitle,
+  ButtonSubmit,
+  ExtraButton,
   FormTitle,
   HistoryContent,
 } from "./style";
+import { logOutUser, updateUser } from "app/redux/reducer/userLogin";
 
-export const TicketHistory = () => {
+export const TicketHistory = ({
+  setModalShow,
+  setTypeModal,
+  setCurrentTicket,
+}) => {
   const { thongTinDatVe } = useSelector((state) => state.userInfoReducer.data);
 
   const renderTicketHistory = (ticketinfo) => {
@@ -22,11 +29,23 @@ export const TicketHistory = () => {
           <td>{index + 1}</td>
           <td>{ticket.tenPhim}</td>
           <td>{ticket.maVe}</td>
-          <td>{ticket.danhSachGhe[0].tenHeThongRap}</td>
-          <td>{ticket.danhSachGhe[0].tenCumRap}</td>
-          <td></td>
+          <td className='hide-on-mobile-flex '>
+            {ticket.danhSachGhe[0].tenHeThongRap}
+          </td>
+          <td className='hide-on-mobile-flex'>
+            {ticket.danhSachGhe[0].tenCumRap}
+          </td>
           <td>
-            <Button className='btn btn-success'>Detail</Button>
+            <Button
+              className='btn btn-success'
+              onClick={() => {
+                setModalShow(true);
+                setTypeModal("historyTicket");
+                setCurrentTicket(ticket);
+              }}
+            >
+              Detail
+            </Button>
           </td>
         </tr>
       );
@@ -40,8 +59,8 @@ export const TicketHistory = () => {
             <th>STT</th>
             <th>Tên phim</th>
             <th>Mã đặt vé</th>
-            <th>Tên cụm rạp</th>
-            <th>Tên rạp</th>
+            <th className='hide-on-mobile-flex'>Tên cụm rạp</th>
+            <th className='hide-on-mobile-flex'>Tên rạp</th>
             <th></th>
           </tr>
         </thead>
@@ -50,14 +69,76 @@ export const TicketHistory = () => {
     </HistoryContent>
   );
 };
+const TicketDetailModal = ({ hideModal, ticket }) => {
+  console.log(ticket);
+  return (
+    <>
+      <h1 className='form-header heading'>Thông tin vé {ticket.maVe}</h1>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '> Tên phim :</AccountTextTitle>
+        <AccountText className='col-7'> {ticket.tenPhim}</AccountText>
+      </div>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '> Cụm rạp :</AccountTextTitle>
+        <AccountText className='col-7'>
+          {ticket.danhSachGhe[0].tenHeThongRap}
+        </AccountText>
+      </div>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '> Rạp :</AccountTextTitle>
+        <AccountText className='col-7'>
+          {ticket.danhSachGhe[0].tenCumRap}
+        </AccountText>
+      </div>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '> Số lượng :</AccountTextTitle>
+        <AccountText className='col-7'>{ticket.danhSachGhe.length}</AccountText>
+      </div>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '> Giá vé :</AccountTextTitle>
+        <AccountText className='col-7'>{ticket.giaVe}</AccountText>
+      </div>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '> Ngày đặt :</AccountTextTitle>
+        <AccountText className='col-7'>
+          {new Date(ticket.ngayDat).toLocaleDateString()}
+        </AccountText>
+      </div>
+      <div className='row text-align-left'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '>Thời lượng:</AccountTextTitle>
+        <AccountText className='col-7'>
+          {ticket.thoiLuongPhim} minutes
+        </AccountText>
+      </div>
+      <div className='row text-align-left mb-3'>
+        <div className='col-1'></div>
+        <AccountTextTitle className='col-4 '>Mã số ghế :</AccountTextTitle>
+        <AccountText className='col-7'>
+          {ticket.danhSachGhe.map((item, index) => (
+            <span key={index}>
+              {item.tenGhe} {index + 1 < ticket.danhSachGhe.length ? "," : ""}
+            </span>
+          ))}
+        </AccountText>
+      </div>
+    </>
+  );
+};
 
-export const AccountInfo = ({ setModalShow }) => {
+export const AccountInfo = ({ setModalShow, setTypeModal }) => {
   const {
     data: { hoTen, email, soDT, maLoaiNguoiDung },
   } = useSelector((state) => state.userLoginReducer);
   return (
     <>
-      <h1 className='heading'>Thông tin cá nhân</h1>
+      {/* <h1 className='heading'>Thông tin cá nhân</h1> */}
       <div className='row text-align-left'>
         <AccountTextTitle className='col-4 '> Họ Tên :</AccountTextTitle>
         <AccountText className='col-8'> {hoTen}</AccountText>
@@ -75,32 +156,33 @@ export const AccountInfo = ({ setModalShow }) => {
         <AccountText className='col-8'> {maLoaiNguoiDung}</AccountText>
       </div>
       <div className='row '>
-        <Button
+        <ButtonSubmit
           className='btn btn-success mt-3 col-3'
-          onClick={() => setModalShow(true)}
+          onClick={() => {
+            setModalShow(true);
+            setTypeModal("editInfo");
+          }}
+          large={true}
         >
           Cập nhật tài khoản
-        </Button>
+        </ButtonSubmit>
       </div>
     </>
   );
 };
 
-const EditProfile = () => {
+const EditProfile = ({ hideModal }) => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.userInfoReducer);
-  const {
-    data: { maLoaiNguoiDung, accessToken },
-  } = useSelector((state) => state.userLoginReducer);
-
+  const dataInfo = useSelector((state) => state.userInfoReducer.data);
+  const dataLogin = useSelector((state) => state.userLoginReducer.data);
   const [editForm, setLoginForm] = useState({
-    taiKhoan: data.taiKhoan,
-    matKhau: data.matKhau,
-    email: data.email,
-    soDt: data.soDT,
-    maNhom: data.maNhom,
-    maLoaiNguoiDung: maLoaiNguoiDung,
-    hoTen: data.hoTen,
+    taiKhoan: dataLogin.taiKhoan,
+    matKhau: dataInfo.matKhau,
+    email: dataLogin.email,
+    soDt: dataLogin.soDT,
+    maNhom: dataLogin.maNhom,
+    maLoaiNguoiDung: dataLogin.maLoaiNguoiDung,
+    hoTen: dataLogin.hoTen,
   });
 
   let { email, soDt, hoTen } = editForm;
@@ -115,7 +197,17 @@ const EditProfile = () => {
       email: editForm.email,
     });
     if (Object.keys(errors).length === 0) {
-      dispatch(editUserApi({ editForm, accessToken: accessToken }));
+      dispatch(editUserApi({ editForm, accessToken: dataLogin.accessToken }))
+        .then((res) => {
+          const dataUpdate = JSON.parse(localStorage.getItem("user"));
+          dataUpdate.hoTen = res.payload.hoTen;
+          dataUpdate.soDT = res.payload.soDT;
+          dataUpdate.email = res.payload.email;
+          localStorage.setItem("user", JSON.stringify(dataUpdate));
+          dispatch(updateUser());
+          hideModal();
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -125,6 +217,7 @@ const EditProfile = () => {
       <Form onSubmit={handleSubmit}>
         <div className='container'>
           <div className='row mt-2 mb-2'>
+            <div className='col-2'></div>
             <div className='col-8'>
               <Form.Group>
                 <AccountTextTitle>Họ tên</AccountTextTitle>
@@ -138,8 +231,10 @@ const EditProfile = () => {
                 />
               </Form.Group>
             </div>
+            <div className='col-2'></div>
           </div>
           <div className='row mt-2 mb-2'>
+            <div className='col-2'></div>
             <div className='col-8'>
               <Form.Group>
                 <AccountTextTitle>Email</AccountTextTitle>
@@ -153,8 +248,10 @@ const EditProfile = () => {
                 />
               </Form.Group>
             </div>
+            <div className='col-2'></div>
           </div>
           <div className='row mt-2 mb-2'>
+            <div className='col-2'></div>
             <div className='col-8'>
               <Form.Group>
                 <AccountTextTitle>Số điện thoại</AccountTextTitle>
@@ -168,17 +265,28 @@ const EditProfile = () => {
                 />
               </Form.Group>
             </div>
+            <div className='col-2'></div>
           </div>
+          <hr />
           <div className='row'>
-            <div className='col-4'>
-              <Button
-                variant='success'
-                type='submit'
-                onClick={handleSubmit}
-                className='form-submit'
-              >
-                Cập nhật tài khoản
-              </Button>
+            <div className='col-xl-6 col-md-6'></div>
+            <div className='col-xl-6 col-md-6'>
+              <div className='d-flex justify-content-start'>
+                <ExtraButton
+                  variant='success'
+                  type='submit'
+                  onClick={handleSubmit}
+                >
+                  Cập nhật tài khoản
+                </ExtraButton>
+                <ExtraButton
+                  large={true}
+                  variant='danger'
+                  onClick={() => hideModal()}
+                >
+                  Hủy bỏ
+                </ExtraButton>
+              </div>
             </div>
           </div>
         </div>
@@ -189,6 +297,18 @@ const EditProfile = () => {
 
 export const EditPassword = () => {
   const dispatch = useDispatch();
+  const dataInfo = useSelector((state) => state.userInfoReducer.data);
+  const dataLogin = useSelector((state) => state.userLoginReducer.data);
+  // const [editForm, setLoginForm] = useState({
+  //   taiKhoan: dataLogin.taiKhoan,
+  //   matKhau: dataInfo.matKhau,
+  //   email: dataLogin.email,
+  //   soDt: dataLogin.soDT,
+  //   maNhom: dataLogin.maNhom,
+  //   maLoaiNguoiDung: dataLogin.maLoaiNguoiDung,
+  //   hoTen: dataLogin.hoTen,
+  // });
+
   const [passwordChangeForm, setLoginForm] = useState({
     currentPassword: "",
     password: "",
@@ -203,6 +323,33 @@ export const EditPassword = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const errors = Validate(
+      {
+        currentPassword: passwordChangeForm.currentPassword,
+        password: passwordChangeForm.password,
+        confirmPassword: passwordChangeForm.confirmPassword,
+      },
+      dataInfo.matKhau
+    );
+    if (Object.keys(errors).length === 0) {
+      let editForm = {
+        taiKhoan: dataLogin.taiKhoan,
+        matKhau: passwordChangeForm.password,
+        email: dataLogin.email,
+        soDt: dataLogin.soDT,
+        maNhom: dataLogin.maNhom,
+        maLoaiNguoiDung: dataLogin.maLoaiNguoiDung,
+        hoTen: dataLogin.hoTen,
+      };
+      console.log(editForm);
+      dispatch(editUserApi({ editForm, accessToken: dataLogin.accessToken }))
+        .then((res) => {
+          dispatch(logOutUser());
+          alert("Đổi mật khẩu thành công , Vui lòng đăng nhập lại");
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -211,7 +358,7 @@ export const EditPassword = () => {
       <Form onSubmit={handleSubmit}>
         <div className='container'>
           <div className='row mt-2 mb-2'>
-            <div className='col-6'>
+            <div className='col-xl-6'>
               <Form.Group>
                 <FormTitle>Mật khẩu cũ</FormTitle>
                 <Form.Control
@@ -226,7 +373,7 @@ export const EditPassword = () => {
             </div>
           </div>
           <div className='row'>
-            <div className='col-6'>
+            <div className='col-xl-6'>
               <Form.Group>
                 <FormTitle>Mật khẩu mới</FormTitle>
                 <Form.Control
@@ -241,7 +388,7 @@ export const EditPassword = () => {
             </div>
           </div>
           <div className='row'>
-            <div className='col-6'>
+            <div className='col-xl-6'>
               <Form.Group>
                 <FormTitle>Nhập lại mật khẩu mới</FormTitle>
                 <Form.Control
@@ -257,14 +404,15 @@ export const EditPassword = () => {
           </div>
           <div className='row'>
             <div className='col-3'>
-              <Button
+              <ButtonSubmit
                 variant='success'
                 type='submit'
                 onClick={handleSubmit}
                 className='form-submit'
+                large={true}
               >
                 Đổi mật khẩu
-              </Button>
+              </ButtonSubmit>
             </div>
           </div>
         </div>
@@ -282,11 +430,13 @@ export const ModalEditInfo = (props) => {
       centered
     >
       <Modal.Body>
-        <EditProfile />
+        {props.content === "editInfo" && (
+          <EditProfile hideModal={props.onHide} />
+        )}
+        {props.content === "historyTicket" && (
+          <TicketDetailModal hideModal={props.onHide} ticket={props.ticket} />
+        )}
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 };

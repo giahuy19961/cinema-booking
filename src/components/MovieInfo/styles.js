@@ -5,9 +5,9 @@ export const MovieInfoWrap = styled.div`
   height: 500px;
   width: 100%;
   position: relative;
-  @media (max-width: 768px) {
-    height: 100vh;
-  }
+  // @media (max-width: 768px) {
+  //   height: 100vh;
+  // }
 `;
 export const MovieBackground = styled.div`
   position: absolute;

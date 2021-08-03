@@ -44,7 +44,7 @@ const HomePage = () => {
         <Showing />
       </div>
       <Trailer isPlay={show} trailer={trailer} />
-      <div>
+      <div id='theaterpc'>
         <Theaters />
       </div>
       <Footer />
