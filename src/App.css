@@ -125,3 +125,9 @@ a ,.nav-link{
 .border-danger-no-title>input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
    color:red;
 }
+.icon{
+  margin-right:5px;
+}
+.nav__admin{
+  z-index: 99;
+}

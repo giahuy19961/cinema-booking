@@ -13,9 +13,13 @@ export const AccountContainer = styled.div`
   margin: auto;
   @media (max-width: 1200px) {
     min-width: 700px;
+
+ 
+    
   }
   @media (max-width: 768px) {
     min-width: 500px;
+ 
   }
 `;
 export const AccountTabs = styled.div`
@@ -58,11 +62,17 @@ export const AccountContent = styled.div`
   color: #000;
   min-height: 650px;
   background-color: #fff;
+  @media (max-width:1400px){
+    min-height:400px;
+  }
 `;
 export const HistoryContent = styled.div`
   width: 100%;
   height: 610px;
   overflow-y: auto;
+  @media (max-width:1400px){
+    height:500px;
+  }
 `;
 export const AccountTextTitle = styled.div`
   font-size: 1.2rem;
