@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 
 const InComing = (props) => {
   const listMovie = useSelector((state) => state.listMovieReducer.data);
- 
+
   return (
-    <CarouselContainer {...props}  listMovie={listMovie}>
+    <CarouselContainer {...props} listMovie={listMovie} type='inComing'>
       {props.children}
     </CarouselContainer>
   );

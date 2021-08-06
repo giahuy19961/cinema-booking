@@ -152,8 +152,8 @@ const Menu = () => {
             {renderListCinema(showTime)}
           </select>
         </div>
-        <div defaultValue={"DEFAULT"} className='menu-nav__list--small'>
-          <select name='date' onChange={handleChange}>
+        <div className='menu-nav__list--small'>
+          <select defaultValue={"DEFAULT"} name='date' onChange={handleChange}>
             <option value='DEFAULT' disabled hidden className='menu-nav__item'>
               Chọn ngày
             </option>

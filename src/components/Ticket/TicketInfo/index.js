@@ -4,6 +4,7 @@ import { CardTitle } from "components/Card/MovieShowCard/styles";
 import { TicketBtn, TicketCardBody } from "./style";
 import { TicketBooked, TicketSeat, TicketVip } from "../TicketContainer/style";
 import WeekendIcon from "@material-ui/icons/Weekend";
+import swal from "sweetalert";
 
 const TicketInfo = ({ seatInfo, setModalShow, renderTotal }) => {
   return (
@@ -49,7 +50,10 @@ const TicketInfo = ({ seatInfo, setModalShow, renderTotal }) => {
           if (seatInfo.length > 0) {
             setModalShow(true);
           } else {
-            alert("Vui lòng chọn vé");
+            swal({
+              title: "Vui lòng chọn vé",
+              icon: "error",
+            });
           }
         }}
       >

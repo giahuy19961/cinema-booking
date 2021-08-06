@@ -1,6 +1,5 @@
 export const Validate = (values, passwordValid) => {
   let errors = {};
-  console.log(values.hoTen, passwordValid);
 
   // hoTen
   if (values.hoTen !== undefined) {
@@ -29,11 +28,11 @@ export const Validate = (values, passwordValid) => {
   }
 
   // password
-  if (values.password !== undefined) {
-    if (!values.password.trim()) {
-      errors.password = "Password không được để trống";
-    } else if (values.password.length < 6) {
-      errors.password = "Password phải trên 6 ký tự";
+  if (values.matKhau !== undefined) {
+    if (!values.matKhau.trim()) {
+      errors.matKhau = "Mật khẩu không được để trống";
+    } else if (values.matKhau.length < 6) {
+      errors.matKhau = "Mật khẩu phải trên 6 ký tự";
     }
   }
 
@@ -43,24 +42,24 @@ export const Validate = (values, passwordValid) => {
       errors.confirmPassword = "Mật khẩu nhập lại không được để trống";
     } else if (values.confirmPassword.length < 6) {
       errors.confirmPassword = "Mật khẩu nhập lại phải trên 6 ký tự";
-    } else if (values.confirmPassword !== values.password) {
+    } else if (values.confirmPassword !== values.matKhau) {
       errors.confirmPassword = "Mật khẩu nhập lại không trùng khớp";
     }
   }
 
   // username
-  if (values.username !== undefined) {
-    if (!values.username.trim()) {
-      errors.username = "Họ tên không được để trống";
+  if (values.taiKhoan !== undefined) {
+    if (!values.taiKhoan.trim()) {
+      errors.taiKhoan = "Tên tài khoản không được để trống";
     }
   }
 
   // So DT
-  if (values.soDT !== undefined) {
-    if (!values.soDT.trim()) {
-      errors.soDT = "Số điện thoại không được để trống";
+  if (values.soDt !== undefined) {
+    if (!values.soDt.trim()) {
+      errors.soDt = "Số điện thoại không được để trống";
     }
   }
-  console.log(errors);
+
   return errors;
 };

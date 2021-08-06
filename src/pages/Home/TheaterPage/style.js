@@ -9,7 +9,7 @@ export const TheaterMobileCinema = styled.div`
   width: 100%;
   border: none;
   max-height: 160px;
-  overflow-x: scroll;
+  overflow-x: auto;
   justify-content: space-between;
   overflow-y: hidden;
 `;
@@ -27,5 +27,5 @@ export const TheatersMobileContainer = styled(TheatersContainer)`
 `;
 export const ListMovieDetailMobile = styled(ListMoviesDetail)`
   height: 960px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;

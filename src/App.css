@@ -106,3 +106,22 @@ a ,.nav-link{
 .tex-align-left{
   text-align:left;
 }
+.color-danger{
+  color:red;
+  text-align: left;
+}
+.border-danger>input{
+  border-color: red;
+  color:red;
+
+}
+.border-danger>input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   color:transparent;
+}
+.border-danger-no-title>input{
+  border-color: red;
+  color:red;
+}
+.border-danger-no-title>input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   color:red;
+}

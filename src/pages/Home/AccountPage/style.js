@@ -62,7 +62,7 @@ export const AccountContent = styled.div`
 export const HistoryContent = styled.div`
   width: 100%;
   height: 610px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 export const AccountTextTitle = styled.div`
   font-size: 1.2rem;

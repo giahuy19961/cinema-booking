@@ -7,6 +7,8 @@ import ModalTicket from "components/ModalTicket";
 import TicketBook from "components/Ticket/TicketBook";
 import TicketContainer from "components/Ticket/TicketContainer";
 import TicketInfo from "components/Ticket/TicketInfo";
+import swal from "sweetalert";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -62,25 +64,26 @@ const TicketPage = ({
     }, 0);
   };
   const buyTicket = () => {
-    if (seatInfo.length > 0) {
-      seatInfo?.map((ticket) => {
-        let thongTinVe = {
-          maLichChieu: data.thongTinPhim.maLichChieu,
-          danhSachVe: [
-            {
-              maGhe: ticket.maGhe,
-              giaVe: ticket.giaVe,
-            },
-          ],
-          taiKhoanNguoiDung: taiKhoan,
-        };
+    seatInfo?.map((ticket) => {
+      let thongTinVe = {
+        maLichChieu: data.thongTinPhim.maLichChieu,
+        danhSachVe: [
+          {
+            maGhe: ticket.maGhe,
+            giaVe: ticket.giaVe,
+          },
+        ],
+        taiKhoanNguoiDung: taiKhoan,
+      };
 
-        dispatch(buyTicketApi({ thongTinVe, accessToken }));
-      });
-      history.push("/");
-    } else {
-      alert("Please choose an ticket");
-    }
+      dispatch(buyTicketApi({ thongTinVe, accessToken }));
+    });
+    swal({
+      title: "Đặt vé thành công",
+      icon: "success",
+    })
+      .then(() => history.push("/"))
+      .catch((err) => console.log(err));
   };
   console.log(seatInfo);
   // dispatch call api

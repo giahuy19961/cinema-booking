@@ -26,7 +26,7 @@ const editUser = createSlice({
     },
     [editUserApi.fulfilled]: (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.data = action.payload.data;
       state.error = null;
     },
     [editUserApi.rejected]: (state, action) => {

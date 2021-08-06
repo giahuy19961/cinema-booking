@@ -6,7 +6,7 @@ const UpComing = (props) => {
   const listMovie = useSelector((state) => state.listMovieReducer.data);
 
   return (
-    <CarouselContainer {...props} listMovie={listMovie}>
+    <CarouselContainer {...props} listMovie={listMovie} type='upComing'>
       {props.children}
     </CarouselContainer>
   );

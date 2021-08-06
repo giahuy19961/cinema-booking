@@ -57,7 +57,7 @@ const CarouselContainer = (props) => {
     return list?.map((movie, index) => {
       return (
         <Carousel.Item className='movie-carousel-item' key={index}>
-          <MovieCard movie={movie} />
+          <MovieCard movie={movie} type={props.type} />
         </Carousel.Item>
       );
     });

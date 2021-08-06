@@ -51,7 +51,7 @@ export const Logo = styled.li`
 export const ListCinema = styled(MenuTheater)`
   align-items: center;
   height: 680px;
-  overflow-y: scroll;
+  overflow: auto;
   justify-content: flex-start;
 `;
 export const ListMovies = styled.ul`
@@ -60,7 +60,7 @@ export const ListMovies = styled.ul`
   list-style: none;
   height: 630px;
   padding-left: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const TheaterTimeNav = styled.ul`

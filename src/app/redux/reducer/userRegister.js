@@ -26,7 +26,7 @@ const userRegister = createSlice({
     },
     [userRegisterApi.fulfilled]: (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.data = action.payload.data;
       state.error = null;
     },
     [userRegisterApi.rejected]: (state, action) => {

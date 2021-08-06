@@ -71,7 +71,7 @@ const NavHome = () => {
               <NavDropdown.Divider />
               {data?.maLoaiNguoiDung === "QuanTri" ? (
                 <>
-                  <DropDownItem to='/dash-board'>Quản lý trang</DropDownItem>
+                  <DropDownItem to='/dashboard'>Quản lý trang</DropDownItem>
                   <NavDropdown.Divider />
                 </>
               ) : null}
@@ -112,7 +112,7 @@ const NavHome = () => {
               {data?.maLoaiNguoiDung === "QuanTri" ? (
                 <NavInfoLink
                   smooth
-                  to='/dash-board'
+                  to='/dashboard'
                   activeStyle={{ color: "#ff2c1f" }}
                 >
                   Quản lý trang

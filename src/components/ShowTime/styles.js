@@ -19,7 +19,7 @@ export const ListDetailCinema = styled(ListCinema)`
     display: flex;
     flex-direction: row;
     border: none;
-    overflow-x: scroll;
+    overflow-x: atuo;
     overflow-y: hidden;
     width: 100%;
   }

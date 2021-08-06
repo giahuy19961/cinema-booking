@@ -8,7 +8,7 @@ import { playTrailer } from "app/redux/reducer/trailer";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { Link } from "react-router-dom";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, type }) => {
   const dispatch = useDispatch();
   const handlePlayTrailer = (movie) => {
     dispatch(playTrailer(movie));
@@ -34,9 +34,13 @@ const MovieCard = ({ movie }) => {
             starSpacing='3px'
           />
         </div>
-        <Button className='btn-card' as={Link} to={`movie/${movie.maPhim}`}>
-          MUA VÉ
-        </Button>
+        {type === "inComing" ? (
+          <Button className='btn-card' as={Link} to={`movie/${movie.maPhim}`}>
+            MUA VÉ
+          </Button>
+        ) : (
+          ""
+        )}
       </Card.Body>
     </Card>
   );

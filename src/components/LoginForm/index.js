@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { Validate } from "utils/Validate";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,33 +8,43 @@ import { userLoginApi } from "app/redux/reducer/userLogin";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { isAuthenticated } = useSelector((state) => state.userLoginReducer);
   const [loginForm, setLoginForm] = useState({
     taiKhoan: "",
     matKhau: "",
   });
+  const [errorMessage, setErrorMessage] = useState({});
   let { taiKhoan, matKhau } = loginForm;
   const handleChange = (event) => {
     setLoginForm({ ...loginForm, [event.target.name]: event.target.value });
+    setErrorMessage({ ...errorMessage, [event.target.name]: "" });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     const errors = Validate({
-      username: taiKhoan,
-      password: matKhau,
+      taiKhoan: taiKhoan,
+      matKhau: matKhau,
     });
     if (Object.keys(errors).length === 0) {
       dispatch(userLoginApi(loginForm));
+    } else {
+      setErrorMessage(errors);
     }
   };
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    // return <Redirect to='back' />;
+    history.goBack();
   }
   return (
     <>
       <h1 className='form-header'>Đăng nhập</h1>
       <Form className='form' onSubmit={handleSubmit}>
-        <Form.Group className='mt-3 mb-3'>
+        <Form.Group
+          className={`mt-3 mb-3 ${
+            errorMessage.taiKhoan ? "border-danger-no-title color-danger" : ""
+          }`}
+        >
           <Form.Control
             type='text'
             placeholder='Tên đăng nhập'
@@ -43,8 +53,20 @@ const LoginForm = () => {
             onChange={handleChange}
             value={taiKhoan}
           />
+          {errorMessage.taiKhoan ? (
+            <Form.Label className='color-danger'>
+              {errorMessage.taiKhoan}
+            </Form.Label>
+          ) : (
+            ""
+          )}
         </Form.Group>
-        <Form.Group className='mt-3 mb-3'>
+
+        <Form.Group
+          className={`mt-3 mb-3 ${
+            errorMessage.matKhau ? "border-danger-no-title color-danger" : ""
+          }`}
+        >
           <Form.Control
             type='password'
             placeholder='Mật khẩu'
@@ -53,7 +75,13 @@ const LoginForm = () => {
             onChange={handleChange}
             required
           />
+          {errorMessage.matKhau ? (
+            <Form.Label>{errorMessage.matKhau}</Form.Label>
+          ) : (
+            ""
+          )}
         </Form.Group>
+
         <Button
           variant='success'
           type='submit'

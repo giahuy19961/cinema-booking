@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Validate } from "utils/Validate";
 import { Button, Form, Table, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
 import {
   AccountText,
   AccountTextTitle,
@@ -188,26 +189,40 @@ const EditProfile = ({ hideModal }) => {
   let { email, soDt, hoTen } = editForm;
   const handleChange = (event) => {
     setLoginForm({ ...editForm, [event.target.name]: event.target.value });
+    setErrorMessage({ ...errorMessage, [event.target.name]: "" });
   };
+  const [errorMessage, setErrorMessage] = useState({});
   const handleSubmit = (event) => {
     event.preventDefault();
     const errors = Validate({
       hoTen: editForm.hoTen,
-      soDT: editForm.soDt,
+      soDt: editForm.soDt,
       email: editForm.email,
     });
+
     if (Object.keys(errors).length === 0) {
       dispatch(editUserApi({ editForm, accessToken: dataLogin.accessToken }))
         .then((res) => {
-          const dataUpdate = JSON.parse(localStorage.getItem("user"));
-          dataUpdate.hoTen = res.payload.hoTen;
-          dataUpdate.soDT = res.payload.soDT;
-          dataUpdate.email = res.payload.email;
-          localStorage.setItem("user", JSON.stringify(dataUpdate));
-          dispatch(updateUser());
+          if (!res.error) {
+            const dataUpdate = JSON.parse(localStorage.getItem("user"));
+            dataUpdate.hoTen = res.payload.data.hoTen;
+            dataUpdate.soDT = res.payload.data.soDT;
+            dataUpdate.email = res.payload.data.email;
+            localStorage.setItem("user", JSON.stringify(dataUpdate));
+            swal({
+              title: "Cập nhật thông tin thành công !",
+              icon: "success",
+            })
+              .then(() => dispatch(updateUser()))
+              .catch((err) => console.log(err));
+          } else {
+            swal({ title: res.payload, icon: "error" });
+          }
           hideModal();
         })
         .catch((err) => console.log(err));
+    } else {
+      setErrorMessage(errors);
     }
   };
 
@@ -219,7 +234,11 @@ const EditProfile = ({ hideModal }) => {
           <div className='row mt-2 mb-2'>
             <div className='col-2'></div>
             <div className='col-8'>
-              <Form.Group>
+              <Form.Group
+                className={
+                  errorMessage.hoTen ? "color-danger border-danger" : ""
+                }
+              >
                 <AccountTextTitle>Họ tên</AccountTextTitle>
                 <Form.Control
                   type='text'
@@ -230,13 +249,24 @@ const EditProfile = ({ hideModal }) => {
                   value={hoTen}
                 />
               </Form.Group>
+              {errorMessage.hoTen ? (
+                <Form.Label className='color-danger'>
+                  {errorMessage.hoTen}
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </div>
             <div className='col-2'></div>
           </div>
           <div className='row mt-2 mb-2'>
             <div className='col-2'></div>
             <div className='col-8'>
-              <Form.Group>
+              <Form.Group
+                className={
+                  errorMessage.email ? "color-danger border-danger" : ""
+                }
+              >
                 <AccountTextTitle>Email</AccountTextTitle>
                 <Form.Control
                   type='email'
@@ -247,13 +277,24 @@ const EditProfile = ({ hideModal }) => {
                   required
                 />
               </Form.Group>
+              {errorMessage.email ? (
+                <Form.Label className='color-danger'>
+                  {errorMessage.email}
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </div>
             <div className='col-2'></div>
           </div>
           <div className='row mt-2 mb-2'>
             <div className='col-2'></div>
             <div className='col-8'>
-              <Form.Group>
+              <Form.Group
+                className={
+                  errorMessage.soDt ? "color-danger border-danger" : ""
+                }
+              >
                 <AccountTextTitle>Số điện thoại</AccountTextTitle>
                 <Form.Control
                   type='text'
@@ -264,6 +305,13 @@ const EditProfile = ({ hideModal }) => {
                   value={soDt}
                 />
               </Form.Group>
+              {errorMessage.soDt ? (
+                <Form.Label className='color-danger'>
+                  {errorMessage.soDt}
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </div>
             <div className='col-2'></div>
           </div>
@@ -311,14 +359,19 @@ export const EditPassword = () => {
 
   const [passwordChangeForm, setLoginForm] = useState({
     currentPassword: "",
-    password: "",
+    matKhau: "",
     confirmPassword: "",
   });
-  let { currentPassword, password, confirmPassword } = passwordChangeForm;
+  let { currentPassword, matKhau, confirmPassword } = passwordChangeForm;
+  const [errorMessage, setErrorMessage] = useState({});
   const handleChange = (event) => {
     setLoginForm({
       ...passwordChangeForm,
       [event.target.name]: event.target.value,
+    });
+    setErrorMessage({
+      ...errorMessage,
+      [event.target.name]: "",
     });
   };
   const handleSubmit = (event) => {
@@ -327,7 +380,7 @@ export const EditPassword = () => {
     const errors = Validate(
       {
         currentPassword: passwordChangeForm.currentPassword,
-        password: passwordChangeForm.password,
+        matKhau: passwordChangeForm.matKhau,
         confirmPassword: passwordChangeForm.confirmPassword,
       },
       dataInfo.matKhau
@@ -335,7 +388,7 @@ export const EditPassword = () => {
     if (Object.keys(errors).length === 0) {
       let editForm = {
         taiKhoan: dataLogin.taiKhoan,
-        matKhau: passwordChangeForm.password,
+        matKhau: passwordChangeForm.matKhau,
         email: dataLogin.email,
         soDt: dataLogin.soDT,
         maNhom: dataLogin.maNhom,
@@ -345,10 +398,18 @@ export const EditPassword = () => {
       console.log(editForm);
       dispatch(editUserApi({ editForm, accessToken: dataLogin.accessToken }))
         .then((res) => {
-          dispatch(logOutUser());
-          alert("Đổi mật khẩu thành công , Vui lòng đăng nhập lại");
+          if (!res.error) {
+            swal({
+              title: "Đổi mật khẩu thành công! Vui lòng đăng nhập lại",
+              icon: "success",
+            }).then(() => dispatch(logOutUser()));
+          } else {
+            swal({ title: res.error.payload, icon: "error" });
+          }
         })
         .catch((err) => console.log(err));
+    } else {
+      setErrorMessage(errors);
     }
   };
 
@@ -358,47 +419,84 @@ export const EditPassword = () => {
       <Form onSubmit={handleSubmit}>
         <div className='container'>
           <div className='row mt-2 mb-2'>
-            <div className='col-xl-6'>
-              <Form.Group>
+            <div className='col-xl-8'>
+              <Form.Group
+                className={
+                  errorMessage.currentPassword
+                    ? "color-danger border-danger"
+                    : ""
+                }
+              >
                 <FormTitle>Mật khẩu cũ</FormTitle>
                 <Form.Control
-                  type='text'
+                  type='password'
                   placeholder='Mật khẩu cũ'
                   name='currentPassword'
                   required
                   onChange={handleChange}
                   value={currentPassword}
                 />
+                {errorMessage.currentPassword ? (
+                  <Form.Label className='color-danger'>
+                    {errorMessage.currentPassword}
+                  </Form.Label>
+                ) : (
+                  ""
+                )}
               </Form.Group>
             </div>
           </div>
           <div className='row'>
-            <div className='col-xl-6'>
-              <Form.Group>
+            <div className='col-xl-8'>
+              <Form.Group
+                className={
+                  errorMessage.matKhau ? "color-danger border-danger" : ""
+                }
+              >
                 <FormTitle>Mật khẩu mới</FormTitle>
                 <Form.Control
                   type='password'
                   placeholder='Mật khẩu mới'
-                  name='password'
-                  value={password}
+                  name='matKhau'
+                  value={matKhau}
                   onChange={handleChange}
                   required
                 />
+                {errorMessage.matKhau ? (
+                  <Form.Label className='color-danger'>
+                    {errorMessage.matKhau}
+                  </Form.Label>
+                ) : (
+                  ""
+                )}
               </Form.Group>
             </div>
           </div>
           <div className='row'>
-            <div className='col-xl-6'>
-              <Form.Group>
+            <div className='col-xl-8'>
+              <Form.Group
+                className={
+                  errorMessage.confirmPassword
+                    ? "color-danger border-danger"
+                    : ""
+                }
+              >
                 <FormTitle>Nhập lại mật khẩu mới</FormTitle>
                 <Form.Control
-                  type='text'
+                  type='password'
                   placeholder='Nhập lại mật khẩu'
                   name='confirmPassword'
                   required
                   onChange={handleChange}
                   value={confirmPassword}
                 />
+                {errorMessage.confirmPassword ? (
+                  <Form.Label className='color-danger'>
+                    {errorMessage.confirmPassword}
+                  </Form.Label>
+                ) : (
+                  ""
+                )}
               </Form.Group>
             </div>
           </div>

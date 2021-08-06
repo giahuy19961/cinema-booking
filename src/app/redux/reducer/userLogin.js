@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "service";
+import swal from "sweetalert";
 
 export const userLoginApi = createAsyncThunk(
   "userLogin/userLoginApi",
@@ -42,15 +43,17 @@ const userLogin = createSlice({
     },
     [userLoginApi.fulfilled]: (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.data = action.payload.data;
       state.error = null;
+      swal({ title: "Login successfully!", icon: "success" });
       state.isAuthenticated = true;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("user", JSON.stringify(action.payload.data));
     },
     [userLoginApi.rejected]: (state, action) => {
       state.loading = false;
       state.data = null;
       state.error = action.payload;
+      swal({ title: action.payload, icon: "error" });
       state.isAuthenticated = false;
     },
   },
