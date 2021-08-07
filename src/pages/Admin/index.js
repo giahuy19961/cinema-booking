@@ -12,7 +12,7 @@ export function AdminLayout({ children }) {
   return (
     <>
       <NavAdmin handleSetIcon={handleSetIcon} iconChange={iconChange} />
-      <SideBarAdmin iconChange={iconChange} />
+      <SideBarAdmin iconChange={iconChange} handleSetIcon={handleSetIcon} />
       <AdminContent slide={iconChange}>
       {children}
       </AdminContent>

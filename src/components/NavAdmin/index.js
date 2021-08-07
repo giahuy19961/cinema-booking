@@ -17,7 +17,7 @@ const NavAdmin = ({handleSetIcon,iconChange}) => {
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' className="nav__admin">
       <Container>
-        <Navbar.Brand href='#home'>{iconChange?<BsTextIndentRight onClick={()=>handleSetIcon()} className='icon' size={35}/>:<BsTextIndentLeft onClick={()=>handleSetIcon()} className='icon' size={35}/>} Cinema Dashboard</Navbar.Brand>
+        <Navbar.Brand href='#home'> Cinema Dashboard</Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
        

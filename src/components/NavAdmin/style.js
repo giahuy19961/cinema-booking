@@ -2,45 +2,78 @@ import styled from 'styled-components'
 
 export const SideBarWrap = styled.div`
    background-color:#212529;
-   width:250px;
-   height: -webkit-calc(100% - 60px);
-   height:calc(100%-60px);
+   width:270px;
+   height:-webkit-calc(100% - 56px);
+   height:calc(100%-56px);
    position:absolute;
-   top:60px;
-   left:${props=>props.slide?"0":"-200px"};
+   top:56px;
+   left:${props=>props.slide?"0":"-230px"};
    transition:ease 0.5s;
+   display:flex;
+   flex-direction:column;
+   align-items:center;
 `
 
 
 
 
-export const SideBarItem = styled.div`
-     margin:auto 20px;
-`
-export const  SideBarMenu = styled.button`
-        width:100%;
-        background-color:#999999;
-        padding:20px;
-        outline:none;
-        border-bottom:1px  solid #777777;
-        font-size:2rem;
-        display:flex;
-        justify-content:space-between;
-        @media (max-width:600px){
-            font-size:1.5rem;
-        }
-`
 
-export const SideBarBody = styled.p`
-       max-height:1200px;
-       background-color:#999999;
-       font-size:1.2rem;
-       line-height:normal;
-       color:#000;
-       padding:20px;
-       margin-bottom:0;
-       @media (max-width:600px){
-           font-size:1rem;
-       }
+
+export const  SideBarMenu = styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:15px 15px;
+
        
+`
+export const SideBarTitle = styled.div`
+    width:100%;
+    background-color:#212529;
+    outline:none;
+    display:flex;
+    color:#fff;
+    align-items:center;
+    cursor:pointer;
+    height:50px;
+    &:hover{
+        color:#ff1e2c;
+        padding-left:5px;
+        font-size:1.1rem;
+       transition:ease 0.5s;
+    }
+`
+export const SideBarBody = styled.ul`
+     display:flex;
+     flex-direction:column;
+     jutify-content:center;
+     list-style:none;
+     
+     
+       
+`
+
+export const SideBarItem = styled.li`
+    color:#fff;
+    padding:10px 20px;
+    font-size:0.9rem;
+    width:100%;
+    height:40px;
+    cursor:pointer;
+    &:hover{
+        color:#ff1c2e;
+        font-size:15px;
+        padding-left:22px;
+       transition:ease 0.5s;
+
+    }
+     
+`
+export const SideBarControl = styled.div`
+    color:#fff;
+    text-align:right;
+    width:100%;
+    margin-right:15px;
+
 `
