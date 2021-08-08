@@ -1,5 +1,7 @@
 import { listUserApi } from "app/redux/reducer/Admin/listUser";
 import Loading from "components/Loading";
+import UserDetailModal from "components/Modal/UserDetailModal";
+import UserEditModal from "components/Modal/UserEditModal";
 import Pagination from "components/Pagination";
 import React, { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
@@ -8,6 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 const UserManagerment = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalShow, setModalShow] = useState(false);
+  const [typeModal, setTypeModal] = useState("");
+  const [detailUser, setDetailUser] = useState(null);
   const { data, loading } = useSelector((state) => state.listUserReducer);
   const renderListUser = (userList) => {
     return userList?.map((user, index) => {
@@ -21,13 +26,22 @@ const UserManagerment = () => {
           <td>
             <Button
               className='btn btn-info m-2'
-              onClick={() => console.log(user)}
+              onClick={() => {
+                setDetailUser(user);
+                setTypeModal("detail");
+                setModalShow(true);
+              }}
             >
               Chi tiết
             </Button>
+
             <Button
               className='btn btn-success'
-              onClick={() => console.log(user)}
+              onClick={() => {
+                setDetailUser(user);
+                setTypeModal("edit");
+                setModalShow(true);
+              }}
             >
               Chỉnh sửa
             </Button>
@@ -36,6 +50,9 @@ const UserManagerment = () => {
       );
     });
   };
+  useEffect(() => {
+    dispatch(listUserApi({ page: 1, totalItems: 10 }));
+  }, []);
   useEffect(() => {
     dispatch(listUserApi({ page: currentPage, totalItems: 10 }));
   }, [currentPage]);
@@ -62,6 +79,20 @@ const UserManagerment = () => {
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
+      {detailUser !== null && typeModal === "detail" && (
+        <UserDetailModal
+          detailUser={detailUser}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      )}
+      {detailUser !== null && typeModal === "edit" && (
+        <UserEditModal
+          detailUser={detailUser}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      )}
     </Container>
   );
 };

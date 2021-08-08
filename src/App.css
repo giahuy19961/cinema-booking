@@ -106,6 +106,9 @@ a ,.nav-link{
 .tex-align-left{
   text-align:left;
 }
+.text-color-default {
+  color:#000;
+}
 .color-danger{
   color:red;
   text-align: left;
