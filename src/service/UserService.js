@@ -27,4 +27,9 @@ export default class UserService {
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
   };
+  getListUserPaginationsApi = (page, totalItem) => {
+    return axios.get(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${totalItem}`
+    );
+  };
 }

@@ -131,3 +131,10 @@ a ,.nav-link{
 .nav__admin{
   z-index: 99;
 }
+/* .prev-pagination > * {
+  stroke: #B3B3B3;
+}
+
+.prev-pagination > *:hover {
+  stroke: #747474;
+} */
