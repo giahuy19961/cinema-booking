@@ -9,7 +9,7 @@ import swal from "sweetalert";
 
 import { useHistory } from "react-router";
 
-const UserEditModal = ({ show, onHide, detailUser }) => {
+const UserEditModal = ({ show, onHide, detailUser, onEdit }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { accessToken } = useSelector((state) => state.userLoginReducer.data);
@@ -40,14 +40,11 @@ const UserEditModal = ({ show, onHide, detailUser }) => {
       dispatch(editUserApi({ editForm, accessToken }))
         .then((res) => {
           if (!res.error) {
+            onEdit();
             swal({
               title: "Cập nhật thông tin thành công !",
               icon: "success",
-            })
-              .then(() => {
-                history.push("/user");
-              })
-              .catch((err) => console.log(err));
+            });
           } else {
             swal({ title: res.payload, icon: "error" });
           }
@@ -195,7 +192,6 @@ const UserEditModal = ({ show, onHide, detailUser }) => {
   );
   const footer = (
     <Container>
-      <hr />
       <div className='row'>
         <div className='col-xl-6 col-md-6'></div>
         <div className='col-xl-6 col-md-6'>

@@ -1,23 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "service";
 
-export const listUserApi = createAsyncThunk(
-  "userInfo/getInfo",
-  async ({ page, perPage, searchValue }, { rejectWithValue }) => {
+export const addUserApi = createAsyncThunk(
+  "user/addUser",
+  async ({ addForm, accessToken }, { rejectWithValue }) => {
     try {
-      return await userService.getListUserPaginationsApi(
-        page,
-        perPage,
-        searchValue
-      );
+      return await userService.createNewUserApi(addForm, accessToken);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-const listUser = createSlice({
-  name: "userInfo",
+const addUser = createSlice({
+  name: "addUser",
   initialState: {
     loading: true,
     data: null,
@@ -25,15 +21,15 @@ const listUser = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [listUserApi.pending]: (state, action) => {
+    [addUserApi.pending]: (state, action) => {
       state.loading = true;
     },
-    [listUserApi.fulfilled]: (state, action) => {
+    [addUserApi.fulfilled]: (state, action) => {
       state.loading = false;
       state.data = action.payload.data;
       state.error = null;
     },
-    [listUserApi.rejected]: (state, action) => {
+    [addUserApi.rejected]: (state, action) => {
       state.loading = false;
       state.data = null;
       state.error = action.payload;
@@ -41,6 +37,6 @@ const listUser = createSlice({
   },
 });
 
-const listUserReducer = listUser.reducer;
+const addUserReducer = addUser.reducer;
 
-export default listUserReducer;
+export default addUserReducer;

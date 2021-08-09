@@ -12,6 +12,8 @@ import userInfoReducer from "./userInfo";
 import editUserReducer from "./editUserInfo";
 import userRegisterReducer from "./userRegister";
 import listUserReducer from "./Admin/listUser";
+import deleteUserReducer from "./Admin/deleteUser";
+import addUserReducer from "./Admin/addUser";
 
 export const rootReducer = combineReducers({
   listMovieReducer,
@@ -27,4 +29,6 @@ export const rootReducer = combineReducers({
   userInfoReducer,
   editUserReducer,
   listUserReducer,
+  deleteUserReducer,
+  addUserReducer,
 });

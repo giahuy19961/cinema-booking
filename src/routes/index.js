@@ -7,7 +7,6 @@ import AccountPage from "pages/Home/AccountPage";
 import DashBoard from "pages/Admin/Dashboard";
 import UserManagerment from "pages/Admin/User";
 import AddUser from "pages/Admin/User/addUser";
-
 const routeHome = [
   {
     path: "/",
@@ -77,7 +76,7 @@ const routeAdmin = [
     isAdmin: true,
   },
   {
-    path: "/user/add-user",
+    path: "/user/create",
     Component: AddUser,
     exact: true,
     isLogin: true,

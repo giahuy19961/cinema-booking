@@ -5,17 +5,15 @@ import { Route } from "react-router-dom";
 import { AdminContent } from "./style";
 
 export function AdminLayout({ children }) {
-  const [iconChange,setIconChange] = useState(true)
-  const handleSetIcon = ()=>{
-    setIconChange(!iconChange)
-  }
+  const [iconChange, setIconChange] = useState(false);
+  const handleSetIcon = () => {
+    setIconChange(!iconChange);
+  };
   return (
     <>
       <NavAdmin handleSetIcon={handleSetIcon} iconChange={iconChange} />
       <SideBarAdmin iconChange={iconChange} handleSetIcon={handleSetIcon} />
-      <AdminContent slide={iconChange}>
-      {children}
-      </AdminContent>
+      <AdminContent slide={iconChange}>{children}</AdminContent>
     </>
   );
 }

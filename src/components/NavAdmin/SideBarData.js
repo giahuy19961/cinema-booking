@@ -25,7 +25,7 @@ export const SideBarData = [
       },
       {
         title: "Thêm người dùng",
-        path: "/user/add-user",
+        path: "/user/create",
         icon: <AiOutlineUserAdd size={16} className='icon' />,
       },
     ],

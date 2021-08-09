@@ -27,9 +27,27 @@ export default class UserService {
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
   };
-  getListUserPaginationsApi = (page, totalItem) => {
+  getListUserPaginationsApi = (page, perPage, searchValue) => {
+    if (searchValue !== "") {
+      return axios.get(
+        `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&tuKhoa=${searchValue}&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+      );
+    }
     return axios.get(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${totalItem}`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+    );
+  };
+  deleteUserApi = (taiKhoan, accessToken) => {
+    return axios.delete(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
+  };
+  createNewUserApi = (addForm, accessToken) => {
+    return axios.post(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/ThemNguoiDung`,
+      addForm,
+      { headers: { Authorization: `Bearer ${accessToken}` } }
     );
   };
 }

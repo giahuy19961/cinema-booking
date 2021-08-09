@@ -71,7 +71,7 @@ const NextIcon = styled(GrNext)`
   }
 `;
 
-const Pagination = ({ totalPages, setCurrentPage, currentPage }) => {
+const Pagination = ({ totalPages, onPageChange, currentPage }) => {
   const renderItem = () => {
     let content = [];
     for (let i = 0; i < totalPages; i++) {
@@ -81,7 +81,7 @@ const Pagination = ({ totalPages, setCurrentPage, currentPage }) => {
       return (
         <Item
           onClick={() => {
-            setCurrentPage(pageNum + 1);
+            onPageChange(pageNum + 1);
           }}
           active={currentPage === pageNum + 1}
         >
@@ -95,14 +95,14 @@ const Pagination = ({ totalPages, setCurrentPage, currentPage }) => {
       <Wrap>
         <ButtonControl
           disabled={currentPage < 2 ? true : false}
-          onClick={() => setCurrentPage(currentPage - 1)}
+          onClick={() => onPageChange(currentPage - 1)}
         >
           <PrevIcon disabled={currentPage < 2 ? true : false} />
         </ButtonControl>
         {renderItem()}
         <ButtonControl
           disabled={currentPage > totalPages - 1 ? true : false}
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() => onPageChange(currentPage + 1)}
         >
           <NextIcon disabled={currentPage > totalPages - 1 ? true : false} />
         </ButtonControl>
