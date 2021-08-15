@@ -3,30 +3,30 @@ import axios from "axios";
 export default class MovieService {
   layDanhSachPhimApi = async () => {
     const response = await axios.get(
-      `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyPhim/LayDanhSachPhim?maNhom=GP09`
     );
     return response.data;
   };
   layThongTinLichChieuPhimApi = async (maPhim) => {
     const response = await axios.get(
-      `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
     );
     return response.data;
   };
   layThongTinLichChieuHeThongRapApi = async (maHeThongRap) => {
     const response = await axios.get(
-      `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`
     );
     return response.data;
   };
   getListMoviePaginationsApi = (page, perPage, tenPhim) => {
     if (tenPhim !== "") {
       return axios.get(
-        `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?MaNhom=GP09&tenPhim=${tenPhim}&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+        `${process.env.REACT_APP_URL_LINK}/QuanLyPhim/LayDanhSachPhimPhanTrang?MaNhom=GP09&tenPhim=${tenPhim}&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
       );
     }
     return axios.get(
-      `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+      `${process.env.REACT_APP_URL_LINK}/QuanLyPhim/LayDanhSachPhimPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
     );
   };
   createNewMovieApi = (addForm, accessToken) => {
