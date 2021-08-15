@@ -14,7 +14,6 @@
     "bootstrap": "^5.0.2",
     "chart.js": "^3.5.0",
     "env-cmd": "^10.1.0",
-  
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-chartjs-2": "^3.0.4",
@@ -35,7 +34,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-   
   },
   "eslintConfig": {
     "extends": "react-app"
