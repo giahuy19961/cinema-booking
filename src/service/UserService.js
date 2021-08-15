@@ -22,7 +22,7 @@ export default class UserService {
   };
   editUserInfoApi = (editForm, accessToken) => {
     return axios.put(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
       editForm,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
@@ -30,27 +30,27 @@ export default class UserService {
   getListUserPaginationApi = (page, perPage, searchValue) => {
     if (searchValue !== "") {
       return axios.get(
-        `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&tuKhoa=${searchValue}&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+        `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&tuKhoa=${searchValue}&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
       );
     }
     return axios.get(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
     );
   };
   getListUserApi = () => {
     return axios.get(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP09`
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP09`
     );
   };
   deleteUserApi = (taiKhoan, accessToken) => {
     return axios.delete(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
   };
   createNewUserApi = (addForm, accessToken) => {
     return axios.post(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/ThemNguoiDung`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung`,
       addForm,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );

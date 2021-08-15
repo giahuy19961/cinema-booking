@@ -6,13 +6,13 @@ import axios from "axios";
 export default class TicketService {
   layDanhSachPhongVe = async (maLichChieu) => {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
     );
     return response.data;
   };
   datVe = async (thongTinVe, accessToken) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyDatVe/DatVe`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe`,
       thongTinVe,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
@@ -20,7 +20,7 @@ export default class TicketService {
   };
   themLichChieu = (formAdd, accessToken) => {
     return axios.post(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyDatVe/TaoLichChieu`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/TaoLichChieu`,
       formAdd,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
