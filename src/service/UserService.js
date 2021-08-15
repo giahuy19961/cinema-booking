@@ -3,19 +3,19 @@ import axios from "axios";
 export default class UserService {
   userLoginApi = (userForm) => {
     return axios.post(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/DangNhap`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap`,
       userForm
     );
   };
   userRegisterApi = (registerForm) => {
     return axios.post(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/DangKy`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy`,
       registerForm
     );
   };
   getAccountInfoApi = async (taiKhoan) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/ThongTinTaiKhoan`,
+      `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
       taiKhoan
     );
     return response.data;
