@@ -1,7 +1,7 @@
 {
   "name": "re-booking-cinema-app",
   "version": "0.1.0",
-  "homepage": "http://giahuy19961.github.io/re-cinema-ticket",
+  
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
