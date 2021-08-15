@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+// Home Reducer
 import listMovieReducer from "./listMovie";
 import listShowTimeMovieReducer from "./listShowTimeMovie";
 import listTheatersReducer from "./listTheaters";
@@ -11,9 +12,17 @@ import getTicketReducer from "./ticket";
 import userInfoReducer from "./userInfo";
 import editUserReducer from "./editUserInfo";
 import userRegisterReducer from "./userRegister";
-import listUserReducer from "./Admin/listUser";
+// Admin Reducer
+import listUserPaginationReducer from "./Admin/listUserPagination";
 import deleteUserReducer from "./Admin/deleteUser";
 import addUserReducer from "./Admin/addUser";
+import listMoviePaginationReducer from "./Admin/listMoviePagination";
+import addMovieReducer from "./Admin/addMovie";
+import deleteMovieReducer from "./Admin/deleteMovie";
+import updateMovieReducer from "./Admin/updateMovie";
+import uploadFileReducer from "./Admin/uploadFile";
+import infoShowMovieReducer from "./Admin/infoShowMovie";
+import listUserReducer from "./Admin/listUser";
 
 export const rootReducer = combineReducers({
   listMovieReducer,
@@ -28,7 +37,14 @@ export const rootReducer = combineReducers({
   getTicketReducer,
   userInfoReducer,
   editUserReducer,
-  listUserReducer,
+  listUserPaginationReducer,
   deleteUserReducer,
   addUserReducer,
+  listMoviePaginationReducer,
+  addMovieReducer,
+  deleteMovieReducer,
+  updateMovieReducer,
+  uploadFileReducer,
+  infoShowMovieReducer,
+  listUserReducer,
 });

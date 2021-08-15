@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { userService } from "service";
+import { ticketService } from "service";
 
-export const listUserApi = createAsyncThunk(
-  "user/listUser",
-  async (params, { rejectWithValue }) => {
+export const addShowApi = createAsyncThunk(
+  "ticket/addShow",
+  async ({ formData, accessToken }, { rejectWithValue }) => {
     try {
-      return await userService.getListUserApi();
+      return await ticketService.themLichChieu(formData, accessToken);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-const listUser = createSlice({
-  name: "listUser",
+const addShow = createSlice({
+  name: "addShow",
   initialState: {
     loading: true,
     data: null,
@@ -21,15 +21,15 @@ const listUser = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [listUserApi.pending]: (state, action) => {
+    [addShowApi.pending]: (state, action) => {
       state.loading = true;
     },
-    [listUserApi.fulfilled]: (state, action) => {
+    [addShowApi.fulfilled]: (state, action) => {
       state.loading = false;
       state.data = action.payload.data;
       state.error = null;
     },
-    [listUserApi.rejected]: (state, action) => {
+    [addShowApi.rejected]: (state, action) => {
       state.loading = false;
       state.data = null;
       state.error = action.payload;
@@ -37,6 +37,6 @@ const listUser = createSlice({
   },
 });
 
-const listUserReducer = listUser.reducer;
+const addShowReducer = addShow.reducer;
 
-export default listUserReducer;
+export default addShowReducer;

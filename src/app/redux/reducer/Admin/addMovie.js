@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { userService } from "service";
+import { movieService } from "service";
 
-export const listUserApi = createAsyncThunk(
-  "user/listUser",
-  async (params, { rejectWithValue }) => {
+export const addMovieApi = createAsyncThunk(
+  "movie/addMovie",
+  async ({ addForm, accessToken }, { rejectWithValue }) => {
     try {
-      return await userService.getListUserApi();
+      return await movieService.createNewMovieApi(addForm, accessToken);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-const listUser = createSlice({
-  name: "listUser",
+const addMovie = createSlice({
+  name: "addMovie",
   initialState: {
     loading: true,
     data: null,
@@ -21,15 +21,15 @@ const listUser = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [listUserApi.pending]: (state, action) => {
+    [addMovieApi.pending]: (state, action) => {
       state.loading = true;
     },
-    [listUserApi.fulfilled]: (state, action) => {
+    [addMovieApi.fulfilled]: (state, action) => {
       state.loading = false;
       state.data = action.payload.data;
       state.error = null;
     },
-    [listUserApi.rejected]: (state, action) => {
+    [addMovieApi.rejected]: (state, action) => {
       state.loading = false;
       state.data = null;
       state.error = action.payload;
@@ -37,6 +37,6 @@ const listUser = createSlice({
   },
 });
 
-const listUserReducer = listUser.reducer;
+const addMovieReducer = addMovie.reducer;
 
-export default listUserReducer;
+export default addMovieReducer;

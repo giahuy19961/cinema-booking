@@ -27,7 +27,7 @@ export default class UserService {
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
   };
-  getListUserPaginationsApi = (page, perPage, searchValue) => {
+  getListUserPaginationApi = (page, perPage, searchValue) => {
     if (searchValue !== "") {
       return axios.get(
         `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&tuKhoa=${searchValue}&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
@@ -35,6 +35,11 @@ export default class UserService {
     }
     return axios.get(
       `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP09&soTrang=${page}&soPhanTuTrenTrang=${perPage}`
+    );
+  };
+  getListUserApi = () => {
+    return axios.get(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP09`
     );
   };
   deleteUserApi = (taiKhoan, accessToken) => {

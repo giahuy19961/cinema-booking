@@ -18,4 +18,11 @@ export default class TicketService {
     );
     return response.data;
   };
+  themLichChieu = (formAdd, accessToken) => {
+    return axios.post(
+      `${process.env.REACT_APP_URL_LINK}/QuanLyDatVe/TaoLichChieu`,
+      formAdd,
+      { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
+  };
 }

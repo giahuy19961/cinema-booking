@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const SideBarWrap = styled.div`
   background-color: #212529;
   width: 270px;
-  height: -webkit-calc(100% - 56px);
-  height: calc(100%-56px);
-  position: absolute;
-  top: 56px;
+  height: 100%;
+  position: fixed;
+  top: ${(props) => (props.changePosition ? "0px" : "56px")};
   left: ${(props) => (props.slide ? "0" : "-230px")};
   transition: ease 0.5s;
   display: flex;

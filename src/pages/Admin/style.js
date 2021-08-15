@@ -74,12 +74,13 @@ export const TitlePc = styled.span`
     display: none;
   }
 `;
-export const ButtonUser = styled(Button)`
+export const ButtonUser = styled.button`
   background-color: #e5606b;
   border-radius: 5px;
   height: 45px;
   display: flex;
   padding: 5px;
+  border: none;
   align-items: center;
   justify-content: center;
   &:hover {
@@ -91,9 +92,21 @@ export const ButtonUser = styled(Button)`
   }
 `;
 export const CustomTd = styled.td`
+  margin: auto;
+  height: 60px;
+
   @media (max-width: 768px) {
-    max-width: 100px;
+    max-width: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+`;
+export const ImageSmall = styled.img`
+  width: 60px;
+  height: 100%;
+`;
+export const ActionGBtn = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 `;

@@ -3,12 +3,15 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
 import { Container, NavDropdown } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FaRegAddressCard } from "react-icons/fa";
 import { AiOutlineLogout } from "react-icons/ai";
+import { logOutUser } from "app/redux/reducer/userLogin";
+import { Link } from "react-router-dom";
 
 const NavAdmin = () => {
+  const dispatch = useDispatch();
   const dataLogin = useSelector((state) => state.userLoginReducer.data);
 
   return (
@@ -28,12 +31,11 @@ const NavAdmin = () => {
               title={`Hello! ${dataLogin.hoTen}`}
               id='collasible-nav-dropdown'
             >
-              <NavDropdown.Item href='#action/3.2'>
-                <FaRegAddressCard className='icon' size={20} /> Quản lý tài
-                khoản
+              <NavDropdown.Item as={Link} to='/'>
+                <FaRegAddressCard className='icon' size={20} /> Go To HomePage
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href='#action/3.3'>
+              <NavDropdown.Item onClick={() => dispatch(logOutUser())}>
                 <AiOutlineLogout className='icon' size={20} />
                 Đăng xuất
               </NavDropdown.Item>

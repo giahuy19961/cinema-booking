@@ -60,6 +60,85 @@ export const Validate = (values, passwordValid) => {
       errors.soDt = "Số điện thoại không được để trống";
     }
   }
+  // maPhim,
+  // tenPhim,
+  // biDanh,
+  // trailer,
+  // hinhAnh,
+  // moTa,
+  // ngayKhoiChieu,
 
+  //maPhim
+  if (values.maPhim !== undefined) {
+    if (Number(values.maPhim) < 1) {
+      errors.maPhim = "Mã phim không hợp lệ";
+    }
+  }
+  //tenPhim
+  if (values.tenPhim !== undefined) {
+    if (!values.tenPhim.trim()) {
+      errors.tenPhim = "Tên phim không được để trống";
+    }
+  }
+  //biDanh
+  if (values.biDanh !== undefined) {
+    if (!values.biDanh.trim()) {
+      errors.biDanh = "Bí danh không được để trống";
+    }
+  }
+  //trailer
+  if (values.trailer !== undefined) {
+    if (!values.trailer.trim()) {
+      errors.trailer = "Trailer không được để trống";
+    }
+  }
+  //hinhAnh
+  if (values.hinhAnh !== undefined) {
+    if (!values.hinhAnh.trim()) {
+      errors.hinhAnh = "Hình ảnh không được để trống";
+    }
+  }
+  // ngayKhoiChieu
+  if (values.ngayKhoiChieu !== undefined) {
+    if (!values.ngayKhoiChieu.trim()) {
+      errors.ngayKhoiChieu = "Số điện thoại không được để trống";
+    }
+  }
+  // moTa
+  if (values.moTa !== undefined) {
+    if (!values.moTa.trim()) {
+      errors.moTa = "Mô tả không được để trống";
+    }
+  }
+  // maRap
+  if (values.maRap !== undefined) {
+    if (!values.maRap.trim()) {
+      errors.maRap = "Rạp không được để trống";
+    }
+  }
+  // maCumRap
+  if (values.maCumRap !== undefined) {
+    if (!values.maCumRap.trim()) {
+      errors.maCumRap = "Cụm rạp không được để trống";
+    }
+  }
+  // maHeThongRap
+  if (values.maHeThongRap !== undefined) {
+    if (!values.maHeThongRap.trim()) {
+      errors.maHeThongRap = "Hệ thống rạp không được để trống";
+    }
+  }
+  // ngayChieuGioChieu
+  if (values.ngayChieuGioChieu !== undefined) {
+    if (!values.ngayChieuGioChieu.trim()) {
+      errors.ngayChieuGioChieu = "Ngày giờ  không được để trống";
+    }
+  }
+  //giaVe
+  if (values.giaVe !== undefined) {
+    if (!values.giaVe.trim()) {
+      errors.giaVe = "Giá vé không được để trống";
+    }
+  }
   return errors;
 };

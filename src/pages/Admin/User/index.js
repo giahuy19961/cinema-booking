@@ -1,4 +1,4 @@
-import { listUserApi } from "app/redux/reducer/Admin/listUser";
+import { listUserPaginationApi } from "app/redux/reducer/Admin/listUserPagination";
 import Loading from "components/Loading";
 import UserDetailModal from "components/Modal/UserDetailModal";
 import UserEditModal from "components/Modal/UserEditModal";
@@ -14,6 +14,7 @@ import {
 import { RiFileUserLine } from "react-icons/ri";
 import swal from "sweetalert";
 import {
+  ActionGBtn,
   AdminSearch,
   ButtonUser,
   CustomTd,
@@ -39,7 +40,9 @@ const UserManagerment = () => {
   const [searchValue, setSearchValue] = useState("");
   const [typeModal, setTypeModal] = useState("");
   const [detailUser, setDetailUser] = useState(null);
-  const { data, loading } = useSelector((state) => state.listUserReducer);
+  const { data, loading } = useSelector(
+    (state) => state.listUserPaginationReducer
+  );
   const renderListUser = (userList) => {
     return userList?.map((user, index) => {
       return (
@@ -52,38 +55,40 @@ const UserManagerment = () => {
           <td className='hide-on-mobile-flex'>{user.matKhau}</td>
           <td className='hide-on-mobile-flex'>{user.maLoaiNguoiDung}</td>
           <td>
-            <Button
-              className='btn btn-info'
-              onClick={() => {
-                setDetailUser(user);
-                setTypeModal("detail");
-                setModalShow(true);
-              }}
-            >
-              <RiFileUserLine size={20} className='icon' />
-              <TitlePc>Chi tiết</TitlePc>
-            </Button>
+            <ActionGBtn>
+              <Button
+                className='btn btn-info'
+                onClick={() => {
+                  setDetailUser(user);
+                  setTypeModal("detail");
+                  setModalShow(true);
+                }}
+              >
+                <RiFileUserLine size={20} className='icon' />
+                <TitlePc>Chi tiết</TitlePc>
+              </Button>
 
-            <Button
-              className='btn btn-success mx-2'
-              onClick={() => {
-                setDetailUser(user);
-                setTypeModal("edit");
-                setModalShow(true);
-              }}
-            >
-              <AiOutlineEdit size={20} className='icon' />
-              <TitlePc>Chỉnh sửa</TitlePc>
-            </Button>
-            <Button
-              className='btn btn-danger'
-              onClick={() => {
-                handleDelete(user);
-              }}
-            >
-              <AiOutlineDelete size={20} className='icon' />
-              <TitlePc>Xóa</TitlePc>
-            </Button>
+              <Button
+                className='btn btn-success mx-2'
+                onClick={() => {
+                  setDetailUser(user);
+                  setTypeModal("edit");
+                  setModalShow(true);
+                }}
+              >
+                <AiOutlineEdit size={20} className='icon' />
+                <TitlePc>Chỉnh sửa</TitlePc>
+              </Button>
+              <Button
+                className='btn btn-danger'
+                onClick={() => {
+                  handleDelete(user);
+                }}
+              >
+                <AiOutlineDelete size={20} className='icon' />
+                <TitlePc>Xóa</TitlePc>
+              </Button>
+            </ActionGBtn>
           </td>
         </tr>
       );
@@ -134,7 +139,7 @@ const UserManagerment = () => {
   // }, []);
   useEffect(() => {
     dispatch(
-      listUserApi({
+      listUserPaginationApi({
         page: filter.soTrang,
         perPage: filter.soPhanTuTrenTrang,
         searchValue: filter.searchValue,
@@ -155,7 +160,7 @@ const UserManagerment = () => {
           <AdminSearch>
             <ButtonUser
               as={Link}
-              to='/user/create'
+              to='/admin/user/create'
               variant='success '
               className='mx-3'
             >

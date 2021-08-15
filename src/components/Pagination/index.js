@@ -80,6 +80,7 @@ const Pagination = ({ totalPages, onPageChange, currentPage }) => {
     return content.map((pageNum, index) => {
       return (
         <Item
+          key={index}
           onClick={() => {
             onPageChange(pageNum + 1);
           }}

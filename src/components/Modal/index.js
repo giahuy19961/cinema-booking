@@ -10,7 +10,11 @@ const ModalContainer = (props) => {
       centered
       style={{ boxShadow: "2px 2px 2px 1px grey", padding: "10px" }}
     >
-      <Modal.Body>{props.body}</Modal.Body>
+      <Modal.Body
+        style={{ minHeight: "500px", display: "block", overflowY: "auto" }}
+      >
+        {props.body}
+      </Modal.Body>
       <Modal.Footer>{props.footer}</Modal.Footer>
     </Modal>
   );

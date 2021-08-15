@@ -41,7 +41,7 @@ const AddUser = () => {
               title: "Thêm người dùng thành công !",
               icon: "success",
             })
-              .then(() => history.push("/user"))
+              .then(() => history.push("/admin/user"))
               .catch((err) => console.log(err));
           } else {
             swal({ title: res.payload, icon: "error" });
