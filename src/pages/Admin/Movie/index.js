@@ -134,7 +134,6 @@ const MovieManagerment = () => {
   const handleDelete = (maPhim) => {
     dispatch(deleteMovieApi({ maPhim, accessToken }))
       .then((res) => {
-        console.log(res);
         // Cors Policy So that always pass Delete case
         swal({
           title: "Xóa phim thành công !",

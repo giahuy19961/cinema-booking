@@ -35,7 +35,7 @@ const AddTicket = ({
     ngayChieuGioChieu: "",
     giaVe: "",
   });
-  console.log(formAdd);
+
   const { maPhim, maRap, ngayChieuGioChieu, maCumRap, maHeThongRap, giaVe } =
     formAdd;
   const [errorMessage, setErrorMessage] = useState({});
@@ -307,9 +307,7 @@ const AddTicket = ({
           <div className='col-2'></div>
           <div className='col-8'>
             <Form.Group
-              className={
-                errorMessage.maPhim ? "color-danger border-danger" : ""
-              }
+              className={errorMessage.giaVe ? "color-danger border-danger" : ""}
             >
               <AccountTextTitle>Giá vé</AccountTextTitle>
               <Form.Control

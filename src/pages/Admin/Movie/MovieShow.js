@@ -28,9 +28,7 @@ const MovieShow = ({
   // global  state
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.infoShowMovieReducer);
-  if (!loading) {
-    console.log(data);
-  }
+
   // local state
   const [detailShow, setDetailShow] = useState(null);
   const [modalShow, setModalShow] = useState(false);

@@ -51,7 +51,6 @@ const MovieEditModal = ({ show, onHide, phim, onEdit }) => {
       ngayKhoiChieu,
     });
     if (Object.keys(errors).length === 0) {
-      console.log("ok");
       const formData = new FormData();
       for (let key of Object.keys(editForm)) {
         if (key === "ngayKhoiChieu") {

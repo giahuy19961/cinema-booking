@@ -1,13 +1,9 @@
 import React from "react";
 import ModalContainer from "components/Modal";
 import { Button } from "react-bootstrap";
-import { IoTicketOutline } from "react-icons/io5";
 import { MovieDetailImg, MovieDetailRow } from "../MovieDetailModal/style";
 
-import { Link } from "react-router-dom";
-
 const ShowDetailModal = ({ show, onHide, detailShow, hinhAnh }) => {
-  console.log(detailShow);
   const body = (
     <>
       <h1 className='heading'>Thông tin phim {detailShow.tenPhim}</h1>
