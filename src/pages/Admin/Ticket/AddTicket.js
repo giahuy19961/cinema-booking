@@ -47,6 +47,7 @@ const AddTicket = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = Validate({
+      maPhim,
       maRap,
       ngayChieuGioChieu,
       maCumRap,
@@ -164,6 +165,9 @@ const AddTicket = ({
                   name='maPhim'
                   value={maPhim}
                 >
+                  <option value='' disabled>
+                    Chọn phim
+                  </option>
                   {listMovieOption(listMovie)}
                 </FormSelect>
               ) : (
@@ -201,6 +205,9 @@ const AddTicket = ({
                 name='maHeThongRap'
                 value={maHeThongRap}
               >
+                <option value='' disabled>
+                  Chọn hệ thống rạp
+                </option>
                 {listTheaterOption(theaterList)}
               </FormSelect>
             </Form.Group>
@@ -228,6 +235,9 @@ const AddTicket = ({
                 name='maCumRap'
                 value={maCumRap}
               >
+                <option value='' disabled>
+                  Chọn cụm rạp
+                </option>
                 {listCinemaOption(cinemaList)}
               </FormSelect>
             </Form.Group>
@@ -249,6 +259,9 @@ const AddTicket = ({
             >
               <AccountTextTitle>Chọn rạp</AccountTextTitle>
               <FormSelect onChange={handleChange} name='maRap' value={maRap}>
+                <option value='' disabled>
+                  Chọn mã rạp
+                </option>
                 {listCineOption(cinemaList)}
               </FormSelect>
             </Form.Group>

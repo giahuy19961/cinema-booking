@@ -67,10 +67,11 @@ export const Validate = (values, passwordValid) => {
   // hinhAnh,
   // moTa,
   // ngayKhoiChieu,
-
   //maPhim
   if (values.maPhim !== undefined) {
-    if (Number(values.maPhim) < 1) {
+    if (!values.maPhim.trim()) {
+      errors.maPhim = "Mã phim không được để trống";
+    } else if (Number(values.maPhim) < 1) {
       errors.maPhim = "Mã phim không hợp lệ";
     }
   }
