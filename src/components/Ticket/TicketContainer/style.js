@@ -33,8 +33,10 @@ export const TicketContent = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  overflow-x: auto;
   align-items: center;
 `;
+
 export const TicketSeat = styled.button`
   color: #000;
   text-align: center;

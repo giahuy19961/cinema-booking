@@ -8,6 +8,8 @@ import {
   TicketVip,
   TicketWrap,
   TicketChoose,
+  TicketSeatWrap,
+  TicketSeatCol,
 } from "./style";
 import WeekendIcon from "@material-ui/icons/Weekend";
 import { Fragment } from "react";
@@ -74,7 +76,7 @@ const TicketContainer = ({ danhSachGhe, handleChooseSeat, seatInfo }) => {
       <TicketScreen>Screen</TicketScreen>
       <TicketContent className='container'>
         <div className='row'>
-          <div className='col-12'>{renderListSeat()}</div>
+          <div className='col-12 '>{renderListSeat()}</div>
         </div>
       </TicketContent>
     </TicketWrap>
