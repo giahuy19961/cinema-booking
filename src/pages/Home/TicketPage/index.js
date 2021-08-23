@@ -85,7 +85,7 @@ const TicketPage = ({
       .then(() => history.push("/"))
       .catch((err) => console.log(err));
   };
-  console.log(seatInfo);
+
   // dispatch call api
   useEffect(() => {
     dispatch(getTicketApi(id));

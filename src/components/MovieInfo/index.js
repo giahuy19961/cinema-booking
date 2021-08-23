@@ -26,7 +26,7 @@ const MovieInfo = () => {
   const { tenPhim, maPhim, hinhAnh, moTa, ngayKhoiChieu, danhGia } =
     useSelector((state) => state.listShowMovieReducer.data);
   const movie = useSelector((state) => state.listShowMovieReducer.data);
-  console.log(tenPhim, maPhim, hinhAnh, moTa, danhGia);
+
   const handlePlayTrailer = (movie) => {
     dispatch(playTrailer(movie));
   };

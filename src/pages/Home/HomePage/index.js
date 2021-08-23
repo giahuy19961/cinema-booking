@@ -18,7 +18,7 @@ const HomePage = () => {
   const listMovie = useSelector((state) => state.listMovieReducer.data);
   const { loading } = useSelector((state) => state.listMovieReducer);
   const { isPlay, trailer } = useSelector((state) => state.trailerReducer);
-  console.log(loading);
+
   const handleModal = () => {
     if (isPlay) {
       setShow(true);

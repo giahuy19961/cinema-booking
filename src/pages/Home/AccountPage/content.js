@@ -71,7 +71,6 @@ export const TicketHistory = ({
   );
 };
 const TicketDetailModal = ({ hideModal, ticket }) => {
-  console.log(ticket);
   return (
     <>
       <h1 className='form-header heading'>Thông tin vé {ticket.maVe}</h1>
@@ -128,6 +127,18 @@ const TicketDetailModal = ({ hideModal, ticket }) => {
             </span>
           ))}
         </AccountText>
+      </div>
+      <div className='row'>
+        <div className='col-3'></div>
+        <div className='col-3'>
+          <ButtonSubmit
+            large={true}
+            variant='danger'
+            onClick={() => hideModal()}
+          >
+            Thoát
+          </ButtonSubmit>
+        </div>
       </div>
     </>
   );
