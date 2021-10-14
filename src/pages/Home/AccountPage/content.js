@@ -1,12 +1,15 @@
 import { editUserApi } from "app/redux/reducer/editUserInfo";
 import { useState } from "react";
 import { Validate } from "utils/Validate";
-import { Button, Form, Table, Modal } from "react-bootstrap";
+import { Form, Table, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { EditPasswordWrap, EditProfileWrap, TicketDetail } from "./style";
+
 import swal from "sweetalert";
 import {
   AccountText,
   AccountTextTitle,
+  ButtonDetail,
   ButtonSubmit,
   ExtraButton,
   FormTitle,
@@ -27,17 +30,19 @@ export const TicketHistory = ({
     return ticketinfo?.map((ticket, index) => {
       return (
         <tr key={index}>
-          <td>{index + 1}</td>
-          <td>{ticket.tenPhim}</td>
-          <td>{ticket.maVe}</td>
-          <td className='hide-on-mobile-flex '>
+          <td className='text-color-white'>{index + 1}</td>
+          <td className='text-color-white hide-on-mobile-flex'>
+            {ticket.tenPhim}
+          </td>
+          <td className='text-color-white'>{ticket.maVe}</td>
+          <td className='hide-on-mobile-flex text-color-white '>
             {ticket.danhSachGhe[0].tenHeThongRap}
           </td>
-          <td className='hide-on-mobile-flex'>
+          <td className='hide-on-mobile-flex text-color-white'>
             {ticket.danhSachGhe[0].tenCumRap}
           </td>
           <td>
-            <Button
+            <ButtonDetail
               className='btn btn-success'
               onClick={() => {
                 setModalShow(true);
@@ -46,7 +51,7 @@ export const TicketHistory = ({
               }}
             >
               Detail
-            </Button>
+            </ButtonDetail>
           </td>
         </tr>
       );
@@ -54,11 +59,11 @@ export const TicketHistory = ({
   };
   return (
     <HistoryContent>
-      <Table striped bordered hover>
+      <Table striped bordered hover className='text-color-white'>
         <thead>
           <tr>
             <th>STT</th>
-            <th>Tên phim</th>
+            <th className='hide-on-mobile-flex'>Tên phim</th>
             <th>Mã đặt vé</th>
             <th className='hide-on-mobile-flex'>Tên cụm rạp</th>
             <th className='hide-on-mobile-flex'>Tên rạp</th>
@@ -72,7 +77,7 @@ export const TicketHistory = ({
 };
 const TicketDetailModal = ({ hideModal, ticket }) => {
   return (
-    <>
+    <TicketDetail>
       <h1 className='form-header heading'>Thông tin vé {ticket.maVe}</h1>
       <div className='row text-align-left'>
         <div className='col-1'></div>
@@ -140,7 +145,7 @@ const TicketDetailModal = ({ hideModal, ticket }) => {
           </ButtonSubmit>
         </div>
       </div>
-    </>
+    </TicketDetail>
   );
 };
 
@@ -238,7 +243,7 @@ const EditProfile = ({ hideModal }) => {
   };
 
   return (
-    <>
+    <EditProfileWrap>
       <h1 className='form-header heading'>Chỉnh sửa thông tin</h1>
       <Form onSubmit={handleSubmit}>
         <div className='container'>
@@ -328,8 +333,8 @@ const EditProfile = ({ hideModal }) => {
           </div>
           <hr />
           <div className='row'>
-            <div className='col-xl-6 col-md-6'></div>
-            <div className='col-xl-6 col-md-6'>
+            <div className=' col-md-6 col-xl-4'></div>
+            <div className=' col-md-6 col-xl-8'>
               <div className='d-flex justify-content-start'>
                 <ExtraButton
                   variant='success'
@@ -350,7 +355,7 @@ const EditProfile = ({ hideModal }) => {
           </div>
         </div>
       </Form>
-    </>
+    </EditProfileWrap>
   );
 };
 
@@ -425,108 +430,85 @@ export const EditPassword = () => {
   };
 
   return (
-    <>
+    <EditPasswordWrap>
       <h1 className='form-header heading'>Cập nhật mật khẩu</h1>
       <Form onSubmit={handleSubmit}>
-        <div className='container'>
-          <div className='row mt-2 mb-2'>
-            <div className='col-xl-8'>
-              <Form.Group
-                className={
-                  errorMessage.currentPassword
-                    ? "color-danger border-danger"
-                    : ""
-                }
-              >
-                <FormTitle>Mật khẩu cũ</FormTitle>
-                <Form.Control
-                  type='password'
-                  placeholder='Mật khẩu cũ'
-                  name='currentPassword'
-                  required
-                  onChange={handleChange}
-                  value={currentPassword}
-                />
-                {errorMessage.currentPassword ? (
-                  <Form.Label className='color-danger'>
-                    {errorMessage.currentPassword}
-                  </Form.Label>
-                ) : (
-                  ""
-                )}
-              </Form.Group>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-xl-8'>
-              <Form.Group
-                className={
-                  errorMessage.matKhau ? "color-danger border-danger" : ""
-                }
-              >
-                <FormTitle>Mật khẩu mới</FormTitle>
-                <Form.Control
-                  type='password'
-                  placeholder='Mật khẩu mới'
-                  name='matKhau'
-                  value={matKhau}
-                  onChange={handleChange}
-                  required
-                />
-                {errorMessage.matKhau ? (
-                  <Form.Label className='color-danger'>
-                    {errorMessage.matKhau}
-                  </Form.Label>
-                ) : (
-                  ""
-                )}
-              </Form.Group>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-xl-8'>
-              <Form.Group
-                className={
-                  errorMessage.confirmPassword
-                    ? "color-danger border-danger"
-                    : ""
-                }
-              >
-                <FormTitle>Nhập lại mật khẩu mới</FormTitle>
-                <Form.Control
-                  type='password'
-                  placeholder='Nhập lại mật khẩu'
-                  name='confirmPassword'
-                  required
-                  onChange={handleChange}
-                  value={confirmPassword}
-                />
-                {errorMessage.confirmPassword ? (
-                  <Form.Label className='color-danger'>
-                    {errorMessage.confirmPassword}
-                  </Form.Label>
-                ) : (
-                  ""
-                )}
-              </Form.Group>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-3'>
-              <ButtonSubmit
-                variant='success'
-                type='submit'
-                onClick={handleSubmit}
-                className='form-submit'
-                large={true}
-              >
-                Đổi mật khẩu
-              </ButtonSubmit>
-            </div>
-          </div>
-        </div>
+        <Form.Group
+          className={
+            errorMessage.currentPassword ? "color-danger border-danger" : ""
+          }
+        >
+          <FormTitle>Mật khẩu cũ</FormTitle>
+          <Form.Control
+            type='password'
+            placeholder='Mật khẩu cũ'
+            name='currentPassword'
+            required
+            onChange={handleChange}
+            value={currentPassword}
+          />
+          {errorMessage.currentPassword ? (
+            <Form.Label className='color-danger'>
+              {errorMessage.currentPassword}
+            </Form.Label>
+          ) : (
+            ""
+          )}
+        </Form.Group>
+
+        <Form.Group
+          className={errorMessage.matKhau ? "color-danger border-danger" : ""}
+        >
+          <FormTitle>Mật khẩu mới</FormTitle>
+          <Form.Control
+            type='password'
+            placeholder='Mật khẩu mới'
+            name='matKhau'
+            value={matKhau}
+            onChange={handleChange}
+            required
+          />
+          {errorMessage.matKhau ? (
+            <Form.Label className='color-danger'>
+              {errorMessage.matKhau}
+            </Form.Label>
+          ) : (
+            ""
+          )}
+        </Form.Group>
+        <Form.Group
+          className={
+            errorMessage.confirmPassword ? "color-danger border-danger" : ""
+          }
+        >
+          <FormTitle>Nhập lại mật khẩu mới</FormTitle>
+          <Form.Control
+            type='password'
+            placeholder='Nhập lại mật khẩu'
+            name='confirmPassword'
+            required
+            onChange={handleChange}
+            value={confirmPassword}
+          />
+          {errorMessage.confirmPassword ? (
+            <Form.Label className='color-danger'>
+              {errorMessage.confirmPassword}
+            </Form.Label>
+          ) : (
+            ""
+          )}
+        </Form.Group>
       </Form>
-    </>
+      <ButtonSubmit
+        variant='success'
+        type='submit'
+        onClick={handleSubmit}
+        className='form-submit'
+        large={true}
+      >
+        Đổi mật khẩu
+      </ButtonSubmit>
+    </EditPasswordWrap>
   );
 };
 

@@ -1,7 +1,14 @@
 import LoginForm from "components/LoginForm";
 import RegisterForm from "components/RegisterForm";
 import React from "react";
-import { AuthContent, AuthWrap } from "./style";
+import {
+  AuthImg,
+  AuthImgWrap,
+  AuthWrap,
+  Container,
+  FormWrap,
+  Wrapper,
+} from "./style";
 
 const AuthHome = ({ authRoute }) => {
   let body;
@@ -12,9 +19,14 @@ const AuthHome = ({ authRoute }) => {
     </>
   );
   return (
-    <AuthWrap>
-      <AuthContent>{body}</AuthContent>
-    </AuthWrap>
+    <Wrapper>
+      <Container>
+        <AuthWrap>
+          <AuthImgWrap></AuthImgWrap>
+          <FormWrap>{body}</FormWrap>
+        </AuthWrap>
+      </Container>
+    </Wrapper>
   );
 };
 

@@ -11,6 +11,7 @@ body,html{
   padding:0;
 }
 
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -34,7 +35,9 @@ a ,.nav-link{
   color:#000;
 
 }
-
+ul{
+  list-style: none;
+}
 .nav-link:hover,a:hover{
   color:#ff2c1f;
 }
@@ -44,13 +47,23 @@ a ,.nav-link{
 .padding-top-page{
   padding-top:80px !important;
 }
-
-@media screen and (max-width: 768px){
+@media  screen and (max-width:767px){
   body{
     overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 1199px){
+  body{
+    
+    position: relative;
     
   }
 }
+.sidebar--open{
+  overflow-y: hidden;
+
+}
+
 .hide-on-mobile{
   display:block !important;
 }
@@ -127,6 +140,9 @@ a ,.nav-link{
 .text-color-default {
   color:#000;
 }
+.text-color-white{
+  color:white
+}
 .color-danger{
   color:red;
   text-align: left;
@@ -163,3 +179,8 @@ a ,.nav-link{
 .prev-pagination > *:hover {
   stroke: #747474;
 } */
+img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

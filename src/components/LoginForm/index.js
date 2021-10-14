@@ -5,6 +5,8 @@ import { Validate } from "utils/Validate";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginApi } from "app/redux/reducer/userLogin";
+import { ButtonSubmit } from "pages/Home/AccountPage/style";
+import { FormContainer, FormLink } from "./style";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -37,11 +39,11 @@ const LoginForm = () => {
     history.goBack();
   }
   return (
-    <>
+    <FormContainer>
       <h1 className='form-header'>Đăng nhập</h1>
-      <Form className='form' onSubmit={handleSubmit}>
+      <Form className='form ' onSubmit={handleSubmit}>
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={`mt-3 mb-3 form-input ${
             errorMessage.taiKhoan ? "border-danger-no-title color-danger" : ""
           }`}
         >
@@ -63,7 +65,7 @@ const LoginForm = () => {
         </Form.Group>
 
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={` form-input ${
             errorMessage.matKhau ? "border-danger-no-title color-danger" : ""
           }`}
         >
@@ -81,23 +83,22 @@ const LoginForm = () => {
             ""
           )}
         </Form.Group>
-
-        <Button
-          variant='success'
-          type='submit'
-          onClick={handleSubmit}
-          className='form-submit'
-        >
-          Login
-        </Button>
       </Form>
-      <p>
+      <ButtonSubmit
+        variant='success'
+        type='submit'
+        onClick={handleSubmit}
+        className='form-submit'
+      >
+        Login
+      </ButtonSubmit>
+      <FormLink>
         Bạn chưa có tài khoản ?
         <Link className='form-link' to='/register'>
           Đăng ký
         </Link>
-      </p>
-    </>
+      </FormLink>
+    </FormContainer>
   );
 };
 
