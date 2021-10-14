@@ -6,6 +6,8 @@ import { Link, useHistory, Redirect } from "react-router-dom";
 import { Validate } from "utils/Validate";
 import swal from "sweetalert";
 import "./style.css";
+import { FormContainer, FormLink } from "components/LoginForm/style";
+import { ButtonSubmit } from "pages/Home/AccountPage/style";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -67,7 +69,7 @@ const RegisterForm = () => {
     return <Redirect to='/' />;
   }
   return (
-    <>
+    <FormContainer>
       <h1 className='form-header'>Đăng ký</h1>
       <Form className='form' onSubmit={handleSubmit}>
         <Form.Group
@@ -91,7 +93,7 @@ const RegisterForm = () => {
           )}
         </Form.Group>
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={`mt-3 mb-3 form-input ${
             errorMessage.hoTen ? "border-danger-no-title color-danger" : ""
           }`}
         >
@@ -111,7 +113,7 @@ const RegisterForm = () => {
           )}
         </Form.Group>
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={`mt-3 mb-3 form-input ${
             errorMessage.matKhau ? "border-danger-no-title color-danger" : ""
           }`}
         >
@@ -131,7 +133,7 @@ const RegisterForm = () => {
           )}
         </Form.Group>
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={`mt-3 mb-3 form-input ${
             errorMessage.confirmPassword
               ? "border-danger-no-title color-danger"
               : ""
@@ -153,7 +155,7 @@ const RegisterForm = () => {
           )}
         </Form.Group>
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={`mt-3 mb-3 form-input ${
             errorMessage.email ? "border-danger-no-title color-danger" : ""
           }`}
         >
@@ -173,7 +175,7 @@ const RegisterForm = () => {
           )}
         </Form.Group>
         <Form.Group
-          className={`mt-3 mb-3 ${
+          className={`mt-3 mb-3 form-input ${
             errorMessage.soDt ? "border-danger-no-title color-danger" : ""
           }`}
         >
@@ -192,18 +194,22 @@ const RegisterForm = () => {
             ""
           )}
         </Form.Group>
-
-        <Button variant='success' type='submit' className='form-submit'>
-          Đăng ký
-        </Button>
       </Form>
-      <p>
+      <ButtonSubmit
+        onClick={handleSubmit}
+        variant='success'
+        type='submit'
+        className='form-submit'
+      >
+        Đăng ký
+      </ButtonSubmit>
+      <FormLink>
         Bạn đã có tài khoản ?
         <Link className='form-link' to='/login'>
           Đăng nhập ngay
         </Link>
-      </p>
-    </>
+      </FormLink>
+    </FormContainer>
   );
 };
 

@@ -1,8 +1,7 @@
-.form{
-    width:25%;
-}
+
 .form-header{
     font-size: 1.5rem;
+    color:var(--primary-color);
     margin:20px auto;
 }
 
@@ -13,9 +12,4 @@
     cursor: pointer;
     color: #ff2c1f;
     padding: 0 10px;
-}
-@media screen and (max-width: 992px){
-    .form{
-        width:50%;
-    }
 }

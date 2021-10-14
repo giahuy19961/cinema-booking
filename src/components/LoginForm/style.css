@@ -1,11 +1,16 @@
-.form{
-    min-width: 500px;
-}
+
 .form-header{
     font-size: 1.5rem;
     margin:20px auto;
 }
-
+.form-input{
+    width: 310px;
+}
+@media screen and (max-width:768px){
+    .form-input{
+        width: 100%;
+    }  
+}
 .form-submit{
     margin:20px auto;
 }
@@ -13,9 +18,5 @@
     cursor: pointer;
     color: #ff2c1f;
     padding: 0 10px;
-}
-@media screen and (max-width: 992px){
-    .form{
-        min-width: 400px;
-    }
+   
 }

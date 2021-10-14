@@ -10,10 +10,12 @@ import {
   TicketHistory,
 } from "./content";
 import {
-  AccountContainer,
-  AccountContent,
+  AccountWrap,
+  Container,
+  Wrapper,
+  AccountMenu,
   AccountTab,
-  AccountTabs,
+  AccountContent,
 } from "./style";
 
 const AccountPage = () => {
@@ -60,47 +62,80 @@ const AccountPage = () => {
   }, []);
 
   return (
-    <div>
-      <AuthWrap>
-        <AuthContent>
-          <AccountContainer>
-            <div className='container'>
-              <div className='row'>
-                <AccountTabs className='col-xxl-3 col-xl-12'>
-                  <AccountTab
-                    active={type === "account" ? true : false}
-                    onClick={() => setType("account")}
-                  >
-                    Thông tin cá nhân
-                  </AccountTab>
-                  <AccountTab
-                    active={type === "password" ? true : false}
-                    onClick={() => setType("password")}
-                  >
-                    Thay đổi mật khẩu
-                  </AccountTab>
-                  <AccountTab
-                    active={type === "history" ? true : false}
-                    onClick={() => setType("history")}
-                  >
-                    Lịch sử đặt vé
-                  </AccountTab>
-                </AccountTabs>
-                <AccountContent className='col-xxl-9 col-xl-12  p-4'>
-                  {renderContent()}
-                </AccountContent>
-              </div>
-            </div>
-          </AccountContainer>
-        </AuthContent>
-      </AuthWrap>
-      <ModalEditInfo
-        content={typeModal}
-        ticket={currentTicket}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-    </div>
+    // <Wrapper>
+    //   <AuthWrap>
+    //     <AccountContainer>
+    //       <AccountWrap>
+    //         <div className='container'>
+    //           <div className='row'>
+    //             <AccountTabs className='col-xxl-3 col-xl-12'>
+    //               <AccountTab
+    //                 active={type === "account" ? true : false}
+    //                 onClick={() => setType("account")}
+    //               >
+    //                 Thông tin cá nhân
+    //               </AccountTab>
+    //               <AccountTab
+    //                 active={type === "password" ? true : false}
+    //                 onClick={() => setType("password")}
+    //               >
+    //                 Thay đổi mật khẩu
+    //               </AccountTab>
+    //               <AccountTab
+    //                 active={type === "history" ? true : false}
+    //                 onClick={() => setType("history")}
+    //               >
+    //                 Lịch sử đặt vé
+    //               </AccountTab>
+    //             </AccountTabs>
+    //             <AccountContent className='col-xxl-9 col-xl-12  p-4'>
+    //               {renderContent()}
+    //             </AccountContent>
+    //           </div>
+    //         </div>
+    //       </AccountWrap>
+    //     </AccountContainer>
+    //   </AuthWrap>
+    //   <ModalEditInfo
+    //     content={typeModal}
+    //     ticket={currentTicket}
+    //     show={modalShow}
+    //     onHide={() => setModalShow(false)}
+    //   />
+    // </Wrapper>
+    <Wrapper>
+      <Container>
+        <AccountWrap>
+          <AccountMenu>
+            <AccountTab
+              active={type === "account" ? true : false}
+              onClick={() => setType("account")}
+            >
+              Thông tin cá nhân
+            </AccountTab>
+            <AccountTab
+              active={type === "password" ? true : false}
+              onClick={() => setType("password")}
+            >
+              Thay đổi mật khẩu
+            </AccountTab>
+            <AccountTab
+              active={type === "history" ? true : false}
+              onClick={() => setType("history")}
+            >
+              Lịch sử đặt vé
+            </AccountTab>
+          </AccountMenu>
+          <AccountContent>{renderContent()}</AccountContent>
+        </AccountWrap>
+        <ModalEditInfo
+          content={typeModal}
+          ticket={currentTicket}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      </Container>
+    </Wrapper>
   );
 };
 
