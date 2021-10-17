@@ -35,7 +35,8 @@ export const AccountMenu = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 25px;
+  // padding-top: 10px;
+  padding:15px
   gap: 10px;
   @media (max-width: 1199px) {
     flex-direction: row;
@@ -47,10 +48,10 @@ export const AccountMenu = styled.ul`
 `;
 export const AccountTab = styled.li`
   color: ${(props) => (props.active ? "#ff2c1f" : "#fff")};
-  padding: 10px 0px 10px 45px;
+  padding: 10px;
   border-right: ${(props) => (props.active ? "4px solid #ff2c1f" : "none")};
   width: 100%;
-  font-size: ${(props) => (props.active ? "1.1rem" : "normal")};
+  font-size: ${(props) => (props.active ? "1.1rem" : "1rem")};
   cursor: pointer;
   &:hover {
     font-size: 1.1rem;
@@ -60,10 +61,10 @@ export const AccountTab = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
     border-bottom: ${(props) => (props.active ? "4px solid #ff2c1f" : "none")};
     border-right: none;
-    font-size: normal;
+    font-size: 0.9rem;
     &:hover {
       font-size: 1rem;
       transition: all 0.3s ease;
@@ -71,7 +72,7 @@ export const AccountTab = styled.li`
   }
 
   @media (max-width: 310px) {
-    font-size: ${(props) => (props.active ? "12px" : "11px")}px;
+    font-size: 0.8rem;
     &:hover {
       font-size: 0.8rem;
       transition: all 0.3s ease;
@@ -187,6 +188,6 @@ export const EditPasswordWrap = styled.div`
   padding: 20px;
   // height: 100%;
   & > form {
-    width: 60%;
+    width: 100%;
   }
 `;

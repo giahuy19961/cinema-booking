@@ -30,7 +30,7 @@ export const TicketHistory = ({
     return ticketinfo?.map((ticket, index) => {
       return (
         <tr key={index}>
-          <td className='text-color-white'>{index + 1}</td>
+          <td className='text-color-white  hide-on-mobile-flex'>{index + 1}</td>
           <td className='text-color-white hide-on-mobile-flex'>
             {ticket.tenPhim}
           </td>
@@ -62,7 +62,7 @@ export const TicketHistory = ({
       <Table striped bordered hover className='text-color-white'>
         <thead>
           <tr>
-            <th>STT</th>
+            <th className='hide-on-mobile-flex'>STT</th>
             <th className='hide-on-mobile-flex'>Tên phim</th>
             <th>Mã đặt vé</th>
             <th className='hide-on-mobile-flex'>Tên cụm rạp</th>
@@ -155,7 +155,7 @@ export const AccountInfo = ({ setModalShow, setTypeModal }) => {
   } = useSelector((state) => state.userLoginReducer);
   return (
     <>
-      {/* <h1 className='heading'>Thông tin cá nhân</h1> */}
+      <h1 className='heading'>Thông tin cá nhân</h1>
       <div className='row text-align-left'>
         <AccountTextTitle className='col-4 '> Họ Tên :</AccountTextTitle>
         <AccountText className='col-8'> {hoTen}</AccountText>
@@ -168,10 +168,10 @@ export const AccountInfo = ({ setModalShow, setTypeModal }) => {
         <AccountTextTitle className='col-4 '> Số điện thoại :</AccountTextTitle>
         <AccountText className='col-8'> {soDT}</AccountText>
       </div>
-      <div className='row text-align-left'>
+      {/* <div className='row text-align-left'>
         <AccountTextTitle className='col-4 '> Role :</AccountTextTitle>
         <AccountText className='col-8'> {maLoaiNguoiDung}</AccountText>
-      </div>
+      </div> */}
       <div className='row '>
         <ButtonSubmit
           className='btn btn-success mt-3 col-3'
