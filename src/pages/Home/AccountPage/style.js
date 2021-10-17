@@ -36,7 +36,7 @@ export const AccountMenu = styled.ul`
   flex-direction: column;
   align-items: center;
   // padding-top: 10px;
-  padding:15px
+  padding: 25px;
   gap: 10px;
   @media (max-width: 1199px) {
     flex-direction: row;
@@ -186,8 +186,12 @@ export const EditPasswordWrap = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+
   // height: 100%;
   & > form {
-    width: 100%;
+    width: 60%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 `;
