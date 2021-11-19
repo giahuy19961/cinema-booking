@@ -73,7 +73,7 @@ export const Item = styled.li`
 `;
 export const UserMenu = styled.ul`
   position: absolute;
-  bottom: -160px;
+  bottom: -5%;
   list-style: none;
   padding: 10px;
   background: #fff;
